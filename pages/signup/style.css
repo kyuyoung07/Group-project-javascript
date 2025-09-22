@@ -1,0 +1,21 @@
+
+.container.formField {
+    height: 100vh;
+    width: 600px;
+    background-color:#E8F4F8;
+    padding: 20px;
+}
+.formTitle {
+    color: #5dbce1;
+    text-align: center;
+}
+.formButton {
+    margin-top: 40px;
+}
+.formButton .btn {
+    background-color: #5dbce1;
+    border: none;
+}
+.formButton .btn:hover {
+    background-color:#AED0DC;
+}
