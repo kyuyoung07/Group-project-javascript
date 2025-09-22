@@ -47,9 +47,9 @@
     background: #D2C1B6;
 }
 .container{
-    width: 700px;
+    width: 900px;
     height: 500px;
-    margin-top: 70px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
