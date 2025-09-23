@@ -1,0 +1,188 @@
+/* Import Local CSS */
+@import url('reset.css');
+@import url('variables.css');
+
+* {
+  font-family: var(--primary-kr);
+  font-weight: bold;
+}
+body {
+  background-color: var(--main-bg);
+  margin: 0;
+  color: var(--brown);
+  line-height: 1.5em;
+  font-size: 16px;
+}
+
+/* #### Common CSS #### */
+
+/* Layout CSS */
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+  align-items:center;
+  height: 100vh;
+}
+.signin{
+  width: 35%;
+  padding: 30px;
+  /* border:1px solid #eee;
+  border-radius: 5px;
+  box-shadow: 0 0 25px rgba(252, 247, 233, 0.5); */
+  box-sizing: border-box;
+  
+}
+/* .signin-photo {
+  height: 150px;
+  background: url('/images/background.jpg') no-repeat ;
+  background-position: center center;
+  margin-bottom: 20px;
+  } */
+.sign-header {
+  text-align: center;
+}
+.sign-header .logo {
+  font-family: var( --primary-kr);
+  color:var(--tpoint);
+  font-size: 48px;
+  font-weight: bold;
+}
+.sign-header p {
+  font-size: 18px;
+  font-weight: bold;
+  color:var(--brown);
+  
+}
+.signin-field input {
+  border: 1px solid var(--point);
+  padding: 20px 20px;
+  width: 100%;
+  border-radius: 15px;
+  margin: 5px 0;
+  transition: .3s;
+}
+.signin-field input:hover{
+  box-shadow: 0 0 0 1px var(--sub-bg2);
+}
+.signin-field input:focus {
+  background: var(--gloudy-gray);
+}
+.signin-field input::placeholder {
+  color: var(--silver-gray);
+  transition: 0.35s;
+}
+.signin-field input:focus::placeholder {
+  opacity: 0;
+}
+
+.status {
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.custom-chk label input[type=checkbox] {
+  display: none;
+
+}
+.custom-chk label input[type=checkbox]  + em {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  transform: translateY(5px);
+  margin-right: 3px;
+  cursor: pointer;
+}
+.custom-chk label input[type=checkbox] + em:before {
+  content: '\F26B';
+  font-family: bootstrap-icons;
+  font-style: normal;
+  color: var(--light-gray);
+  transform: translateY(-3px);
+  display: inline-block;
+}
+.custom-chk label input[type=checkbox]:checked + em:before {
+  color: var(--point);
+}
+/* Button CSS */
+.btn-signin {
+  cursor: pointer;
+   font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  width: 100%;
+  padding: 20px;
+  background-color: var(--nav-button);
+}
+.btn-signin:hover{
+  background: var(--point);
+  transition:.3s;
+  
+}
+.custom-chk a:hover{
+  text-decoration: underline;
+}
+.join-member {
+  text-align: center;
+  margin: 15px 0;
+}
+.join-member a {
+  text-decoration: underline;
+}
+.join-member a:hover {
+  color: var(--point);
+}
+
+
+.easy-signin {
+  text-align: center;
+}
+.easy-signin span {
+  color: var(--light-gray);
+}
+.social-btn {
+  margin: 10px 0;
+}
+.social-btn a {
+  margin: 2px;
+}
+
+
+/* For Big Size Mobile & Tablet Device */
+ @media all and (min-width:480px) and (max-width:767px){
+  .signin{
+  width: 60%;
+
+  padding: 50px;
+ 
+}
+ .sign-header .logo {
+ font-size: 48px;
+}
+
+.sign-header p {
+ display: none;
+}
+ }
+ @media all and (max-width:479px){
+.signin{
+  width: 100%;
+  padding: 10px;
+}
+.sign-header .logo {
+ font-size: 36px;
+ margin-top: 30px;
+}
+
+.sign-header p {
+ display: none;
+}
+.btn-signin{
+  padding: 12px;
+}
+
+.signin-field input {
+  padding:15px 20px;
+}
+ }
