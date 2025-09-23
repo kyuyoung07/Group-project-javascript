@@ -18,9 +18,11 @@
   </head>
   <body>
     <div class="big-container">
-        <!--상단 네비게이션-->
+      <!--상단 네비게이션-->
       <nav>
-        <div class="d-flex justify-content-around align-items-center pt-4 nav-logo">
+        <div
+          class="d-flex justify-content-around align-items-center pt-4 nav-logo"
+        >
           <a class="navbar-brand" href="#">LOGO</a>
           <i class="fa-solid fa-circle-user"></i>
         </div>
@@ -28,22 +30,34 @@
       <!--사이드바-->
       <div class="navSideBar">
         <div class="nav-icon" data-bs-toggle="tooltip" title="달력">
-            <i class="fa-solid fa-calendar-days"></i>
+          <i class="fa-solid fa-calendar-days"></i>
         </div>
         <div class="nav-icon" data-bs-toggle="tooltip" title="일기장">
-            <i class="fa-solid fa-book"></i>
+          <i class="fa-solid fa-book"></i>
         </div>
         <div class="nav-icon" data-bs-toggle="tooltip" title="사진첩">
-            <i class="fa-solid fa-image"></i>
+          <i class="fa-solid fa-image"></i>
         </div>
         <div class="nav-icon" data-bs-toggle="tooltip" title="검색">
-            <i class="fa-solid fa-magnifying-glass"></i>
+          <i class="fa-solid fa-magnifying-glass"></i>
         </div>
       </div>
       <div class="container">
-        <div class="main-board">
-            <div>달력</div>
-        </div>
+        <h2 style="text-align: center" id="monthYear"></h2>
+        <table id="calendar">
+          <thead>
+            <tr>
+              <th>일</th>
+              <th>월</th>
+              <th>화</th>
+              <th>수</th>
+              <th>목</th>
+              <th>금</th>
+              <th>토</th>
+            </tr>
+          </thead>
+          <tbody id="calendar-body"></tbody>
+        </table>
       </div>
     </div>
 
