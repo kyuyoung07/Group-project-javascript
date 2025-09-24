@@ -46,7 +46,7 @@ const getCalendar = async (year = currentYear, month = currentMonth) => {
     calendarBody.appendChild(row);
   }
 }
-//이전 버튼
+//이전달 버튼
 document.getElementById("prevBtn").addEventListener('click',()=>{
   currentMonth--;
   if(currentMonth<0){
@@ -55,7 +55,7 @@ document.getElementById("prevBtn").addEventListener('click',()=>{
   }
   getCalendar(currentYear, currentMonth);
 });
-//이전 버튼
+//다음달 버튼
 document.getElementById("nextBtn").addEventListener('click',()=>{
   currentMonth++;
   if(currentMonth>11){
