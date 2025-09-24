@@ -5,55 +5,64 @@ const tooltipTriggerList = document.querySelectorAll(
 const tooltipList = [...tooltipTriggerList].map(
   (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
 );
-//달력api
-const API_KEY = `AIzaSyCwvL765tm73jvp8l3Nln1XCMWATMcUH8s`;
-const CALENDAR_ID = "ko.south_korea#holiday@group.v.calendar.google.com"; // 한국 공휴일 캘린더
-const timeMin = new Date().toISOString(); // 현재 시간 이후 일정만 가져오기
-const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
-  CALENDAR_ID
-)}/events?key=${API_KEY}`;
+//햔재 년도와 월을 저장할 변수
+let currentYear = new Date().getFullYear();
+let currentMonth = new Date().getMonth();
 //달력 불러오는 함수
-const getCalendar = async () => {
-  try {
-    // 1. API 호출
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`HTTP 에러: ${response.status}`);
-    const data = await response.json();
-    console.log("API 호출 성공:", data); //데이터 확인용
+const getCalendar = async (year = currentYear, month = currentMonth) => {
+  currentYear = year;
+  currentMonth = month;
+  //달력 화면 구성
+  const firstDay = new Date(year, month, 1).getDay();
+  const lastDate = new Date(year, month + 1, 0).getDate();
+  const today = new Date();
 
-    // 2. 달력 화면 구성
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const firstDay = new Date(year, month, 1).getDay();
-    const lastDate = new Date(year, month + 1, 0).getDate();
+  document.getElementById("monthYear").textContent = `${year}년 ${month + 1}월`;
+  const calendarBody = document.getElementById("calendar-body");
+  calendarBody.innerHTML = "";
 
-    document.getElementById("monthYear").textContent = `${year}년 ${month + 1}월`;
-    const calendarBody = document.getElementById("calendar-body");
-    calendarBody.innerHTML = "";
-
-    let date = 1;
-    for (let i = 0; i < 6; i++) { // 최대 6주
-      const row = document.createElement("tr");
-      for (let j = 0; j < 7; j++) {
-        const cell = document.createElement("td");
-        if (i === 0 && j < firstDay) {
-          cell.textContent = "";
-        } else if (date > lastDate) {
-          cell.textContent = "";
-        } else {
-          cell.textContent = date;
-          if (date === today.getDate()) cell.classList.add("today");
-          date++;
+  let date = 1;
+  for (let i = 0; i < 6; i++) {
+    const row = document.createElement("tr");
+    for (let j = 0; j < 7; j++) {
+      const cell = document.createElement("td");
+      if (i === 0 && j < firstDay) {
+        cell.textContent = "";
+      } else if (date > lastDate) {
+        cell.textContent = "";
+      } else {
+        cell.textContent = date;
+        if (
+          date === today.getDate() &&
+          year === today.getFullYear() &&
+          month === today.getMonth()
+        ) {
+          cell.classList.add("today");
         }
-        row.appendChild(cell);
+        date++;
       }
-      calendarBody.appendChild(row);
+      row.appendChild(cell);
     }
-
-  } catch (error) {
-    console.error("달력api 불러오기 실패:", error);
+    calendarBody.appendChild(row);
   }
-};
-
+}
+//이전 버튼
+document.getElementById("prevBtn").addEventListener('click',()=>{
+  currentMonth--;
+  if(currentMonth<0){
+    currentMonth=11;
+    currentMonth--;
+  }
+  getCalendar(currentYear, currentMonth);
+});
+//이전 버튼
+document.getElementById("nextBtn").addEventListener('click',()=>{
+  currentMonth++;
+  if(currentMonth>11){
+    currentMonth=0;
+    currentMonth++;
+  }
+  getCalendar(currentYear, currentMonth);
+});
+//getCalendar 함수 실행
 getCalendar();
