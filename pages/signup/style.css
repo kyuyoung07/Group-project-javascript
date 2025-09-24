@@ -4,8 +4,11 @@
     font-weight: 300;
     font-display: swap;
 }
+.pageWrapper {
+    padding: 20px;
+}
 .container.formField {
-   font-family: 'Sweet';  
+  font-family: 'Sweet';  
   height: 800px; 
   width: 600px;
   background-color: #E8F4F8;

@@ -66,6 +66,12 @@ document.querySelector("#joinMember").addEventListener("submit", e => {
 
   //핸드폰 번호 형식 검사
   function regExpCellphone (regExp) {
+    const value = document.querySelector("#userTel").value.trim();
+    // 먼저 빈 값 확인
+    if (value.length === 0) {
+        return false; // validateInput에서 이미 메시지를 처리했으므로 그대로 리턴
+    }
+
     if(!regExp.test(document.querySelector("#userTel").value.trim())) {
         document.querySelector(".errorMessage-tel").textContent = "* 핸드폰 번호 형식이 아닙니다."
         return false;
