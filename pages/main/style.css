@@ -88,7 +88,7 @@
   box-shadow: 0 12px 35px rgba(122, 78, 45, 0.15);
   border: 1px solid #e2cfcf; /* 서브 포인트 연한 로즈 */
 }
-/*달력 헤더 (제목+버튼)*/
+/*달력 헤더(제목+버튼)*/
 .calendar-header {
   display: flex;
   align-items: center;
@@ -96,7 +96,7 @@
   margin-bottom: 15px;
   width: 100%;
 }
-/* 달력 제목 (년/월) */
+/* 달력 제목(년/월) */
 #monthYear {
   text-align: center;
   font-weight: 700;
@@ -141,7 +141,7 @@
   font-family: "NanumSquareRound", "Dooneun", "Sweet", "Segoe UI", Tahoma,
     Verdana, sans-serif;
 }
-/* 달력 헤더(요일) - 연민트색으로 변경 */
+/* 달력 헤더(요일) */
 #calendar thead th {
   background-color: #3eb489; /* 연민트색 */
   color: #fff; /* 텍스트 브라운 계열 */
@@ -150,7 +150,7 @@
   font-size: 0.95rem;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
   border-bottom: 2px solid #a8c5be;
-  width: 14.28%; /* 7개 열이 균등하게 */
+  width: 14.28%;
   text-align: center;
 }
 /* 달력 날짜 셀 */
@@ -162,9 +162,9 @@
   background-color: #fefefe;
   font-size: 1rem;
   font-weight: 500;
-  height: calc((100% - 50px) / 6); /* 6주 균등 분할 */
+  height: calc((100% - 50px) / 6);
   vertical-align: middle;
-  border-bottom: 1px solid #f7cac9; /* 서브 포인트 따뜻한 핑크로 구분선 */
+  border-bottom: 1px solid #f7cac9;
   border-right: 1px solid #f7cac9;
   width: 14.28%; /* 7개 열이 균등하게 */
 }
@@ -188,11 +188,51 @@
 #calendar tbody td:first-child {
   color: #d2691e; /* 일요일 - 따뜻한 오렌지 톤 */
 }
-
 #calendar tbody td:last-child {
   color: #8b4513; /* 토요일 - 깊은 브라운 톤 */
 }
-/* 반응형: 작은 화면에서 글씨 조금 작게 */
+/* 모달 기본 숨김 */
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+/* 모달 내용 */
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal-content textarea {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  padding: 8px;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.diary-btn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  background-color: #f7cac9;
+  border-radius: 8px;
+}
+/* 반응형 */
 @media (max-width: 768px) {
   .container {
     width: 90vw;
@@ -213,7 +253,6 @@
     font-size: 0.9rem;
   }
 }
-
 @media (max-width: 480px) {
   .container {
     width: 95vw;

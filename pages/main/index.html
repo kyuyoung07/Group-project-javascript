@@ -32,7 +32,12 @@
         <div class="nav-icon" data-bs-toggle="tooltip" title="달력">
           <i class="fa-solid fa-calendar-days"></i>
         </div>
-        <div class="nav-icon" data-bs-toggle="tooltip" title="일기장">
+        <div
+          class="nav-icon dairy-btn"
+          data-bs-toggle="tooltip"
+          title="일기장"
+          id="diaryBtn"
+        >
           <i class="fa-solid fa-book"></i>
         </div>
         <div class="nav-icon" data-bs-toggle="tooltip" title="사진첩">
@@ -66,6 +71,19 @@
           </thead>
           <tbody id="calendar-body"></tbody>
         </table>
+        <div id="diaryModal" class="modal">
+          <div class="modal-content">
+            <h3>오늘의 일기</h3>
+            <textarea
+              id="diaryText"
+              placeholder="오늘 하루를 기록해보세요..."
+            ></textarea>
+            <div class="modal-actions">
+              <button id="saveDiary">저장</button>
+              <button id="closeModal">닫기</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
