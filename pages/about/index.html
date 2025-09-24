@@ -1,17 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회사소개</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<html lang="ko">
 
-    
-    <!--공통JS-------------------->
-    <script src="main.js"></script>
-    <!--페이지 전용 JS--------------->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q & A</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="modal fade" id="writeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">질문 작성</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-Input-Title">
+                        <p>제목</p>
+                        <input type="text" placeholder="제목을 작성해주세요" id="input-Title" />
+                    </div>
+                    <div class="modal-Input-Detail">
+                        <p>질문</p>
+                        <textarea id="input-Detail" placeholder="질문을 작성해주세요"></textarea>
+                    </div>
+                    <!-- <div class="modal-Input-file">
+              <input type="file" />
+            </div> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        취소
+                    </button>
+                    <button type="submit" class="btn btn-primary saveBtn">저장</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        질문 및 답변
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body detailBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="sub-Page-Nav">
+        <section class="logoItem">
+            <a href="#"> <img src="#" alt="LOGO" /></a>
+        </section>
+        <section class="navItem">
+            <div class="navMenu">
+                <a href="#">Home</a>
+                <a href="#">DDDD</a>
+                <a href="#">CCCC</a>
+                <a href="#">BBBB</a>
+            </div>
+        </section>
+        <section class="userImage">
+            <div><a href="#">MY PAGE</a></div>
+            <img src="#" alt="User" />
+        </section>
+    </nav>
+
+    <main class="sub-Page-Main">
+        <section class="mainTopItem">
+            <h3 class="qaFont">Q & A</h3>
+            <div class="underBar"></div>
+        </section>
+        <section class="mainTopItemTwo">
+            <a href="#">Q & A</a>
+        </section>
+        <section class="mainFooter">
+            <button type="button" class="writeBtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#writeModal">
+                글쓰기
+            </button>
+            <div>
+                <input type="search" id="searchInput" placeholder="검색어를 입력해주세요" />
+                <button class="searchBtn">
+                    <i class="fas fa-search searchIcon"></i>
+                </button>
+            </div>
+        </section>
+        <section class="detailMenuBox">
+            <div class="detailMenu">
+                <div class="detailTitle">제목</div>
+                <div class="detail-RightBox">
+                    <div class="detailAuthor">글쓴이</div>
+                    <div class="detailTime">작성시간</div>
+                </div>
+            </div>
+            <div id="detail">
+                <!-- 자바스크립트로 생성되는 동적으로 생성 -->
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

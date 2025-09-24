@@ -1,0 +1,257 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* ======================================nav아이템====================================== */
+.sub-Page-Nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  background-color: gray;
+  width: 100%;
+}
+
+.logoItem {
+  margin-left: 10px;
+  width: 33%;
+}
+
+.navItem {
+  width: 33%;
+  display: flex;
+  width: 33%;
+  justify-content: end;
+}
+
+.userImage {
+  display: flex;
+  margin: 0 10px;
+  width: 33%;
+  justify-content: end;
+}
+
+.navMenu {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.navMenu a {
+  text-decoration: none;
+  color: black;
+}
+
+.navMenu a:hover {
+  color: aqua;
+}
+
+.userImage a {
+  text-decoration: none;
+  color: black;
+}
+
+.userImage a:hover {
+  color: aqua;
+}
+
+/* ======================================Main아이템====================================== */
+.sub-Page-Main {
+  height: calc(100% - 64px);
+  background-color: rgb(199, 198, 198);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 3% 25% 0 25%;
+}
+
+.mainTopItem {
+  margin-bottom: 30px;
+}
+
+.qaFont {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.underBar {
+  width: 125px;
+  text-align: center;
+  height: 3px;
+  background-color: black;
+}
+
+.mainTopItemTwo {
+  margin-bottom: 10px;
+}
+
+.mainTopItemTwo a {
+  text-decoration: none;
+  color: black;
+}
+
+.mainTopItemTwo a:hover {
+  text-decoration: underline paleturquoise;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 3px;
+}
+
+.mainFooter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 10px 0;
+}
+
+.writeBtn {
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  width: 60px;
+  height: 32px;
+  cursor: pointer;
+  border: none;
+  font-size: 12px;
+}
+
+.writeBtn:hover {
+  background-color: rgb(85, 48, 48);
+}
+
+#searchInput {
+  border-radius: 5px;
+  outline: none;
+  border: 3px solid rgba(0, 0, 0, 0.856);
+  padding-left: 5px;
+  margin-right: 7px;
+  height: 32px;
+  width: 212px;
+}
+
+.searchBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.searchIcon {
+  font-size: 18px;
+}
+
+.detailMenuBox {
+  width: 100%;
+}
+
+.detailMenu {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-top: 2px solid black;
+  border-bottom: 1px solid black;
+  align-items: center;
+  height: 42px;
+  font-size: 14px;
+}
+
+.detail-RightBox {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+}
+
+.detailTitle {
+  text-align: center;
+  width: 60%;
+}
+
+.datail-List {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  align-items: center;
+  height: 42px;
+  font-size: 14px;
+}
+
+.list-RightBox {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+}
+
+.listTitle {
+  text-align: center;
+  width: 60%;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.listTitle:hover {
+  text-decoration: underline;
+}
+
+/* ======================================Modal아이템====================================== */
+.saveBtn {
+  background-color: black;
+  border: 1px solid black;
+}
+
+.saveBtn:hover {
+  background-color: rgb(77, 28, 28);
+  border: 1px solid rgb(77, 28, 28);
+}
+
+.modal-Input-Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-Input-Detail {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-Input-Title p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 8%;
+}
+
+.modal-Input-Title input {
+  height: 30px;
+  border: 1px solid #ccc;
+  padding: 0 10px;
+  box-sizing: border-box;
+  width: 92%;
+}
+
+.modal-Input-Detail p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 8%;
+}
+
+.modal-Input-Detail textarea {
+  height: 100px;
+  border: 1px solid #ccc;
+  padding: 0 10px;
+  box-sizing: border-box;
+  width: 92%;
+}
