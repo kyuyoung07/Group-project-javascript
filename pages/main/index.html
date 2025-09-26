@@ -23,7 +23,13 @@
         <div
           class="d-flex justify-content-around align-items-center pt-4 nav-logo"
         >
-          <a class="navbar-brand" href="#">LOGO</a>
+          <a class="navbar-brand" href="#">
+            <img
+              src="../../assets/logo.png"
+              alt="Logo"
+              class="logo-img"
+            />
+          </a>
           <i class="fa-solid fa-circle-user"></i>
         </div>
       </nav>
@@ -73,7 +79,7 @@
         </table>
         <div id="diaryModal" class="modal">
           <div class="modal-content">
-            <h3>오늘의 일기</h3>
+            <h3 id="modalTitle">오늘의 일기</h3>
             <textarea
               id="diaryText"
               placeholder="오늘 하루를 기록해보세요..."

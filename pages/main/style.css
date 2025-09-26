@@ -38,6 +38,10 @@
   font-weight: 800;
   font-size: larger;
 }
+.logo-img{
+  width: 60px; 
+  height: auto;
+}
 /* 사이드바 */
 .navSideBar {
   width: 60px;
