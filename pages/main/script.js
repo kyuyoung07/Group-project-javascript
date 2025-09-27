@@ -117,6 +117,67 @@ const getCalendar = async (year = currentYear, month = currentMonth) => {
   }
 };
 
+//일기 리스트 렌더링 함수
+const renderDiaryList = () => {
+  const diaryListContainer = document.getElementById("diary-list");
+  const diaries = loadDiaries();
+  const entries = Object.entries(diaries);
+  
+  if (entries.length === 0) {
+    diaryListContainer.innerHTML = '<div class="no-diary-message">작성한 일기가 없습니다.</div>';
+    return;
+  }
+
+  // 날짜순으로 정렬 (최신순)
+  entries.sort((a, b) => new Date(b[0]) - new Date(a[0]));
+
+  let html = '';
+  entries.forEach(([dateKey, content]) => {
+    const [year, month, day] = dateKey.split('-');
+    const displayDate = `${year}년 ${month}월 ${day}일`;
+    const preview = content.length > 20 ? content.substring(0, 20) + '...' : content;
+    
+    html += `
+      <div class="diary-item" onclick="openDiaryModal('${dateKey}')">
+        <div class="diary-item-date">${displayDate}</div>
+        <div class="diary-item-preview">${preview}</div>
+      </div>
+    `;
+  });
+  
+  diaryListContainer.innerHTML = html;
+};
+
+//특정 일기를 모달로 여는 함수
+const openDiaryModal = (dateKey) => {
+  const [year, month, day] = dateKey.split('-');
+  const modal = document.getElementById("diaryModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const diaryText = document.getElementById("diaryText");
+  
+  selectedDate = { year: parseInt(year), month: parseInt(month) - 1, day: parseInt(day) };
+  const diaries = loadDiaries();
+  const existingDiary = diaries[dateKey];
+  
+  diaryText.value = existingDiary;
+  modalTitle.textContent = `${year}년 ${month}월 ${day}일 일기`;
+  
+  if (existingDiary.trim() !== "") {
+    isEditMode = false;
+    diaryText.disabled = true;
+    showButtons(["editDiary", "deleteDiary"]);
+  } else {
+    isEditMode = true;
+    diaryText.disabled = false;
+    showButtons(["saveDiary"]);
+  }
+  
+  modal.style.display = "flex";
+  if (!diaryText.disabled) {
+    diaryText.focus();
+  }
+};
+
 //이전달 버튼
 document.getElementById("prevBtn").addEventListener("click", () => {
   currentMonth--;
@@ -139,7 +200,13 @@ document.getElementById("nextBtn").addEventListener("click", () => {
 
 //모달&버튼 이벤트 관리
 document.addEventListener("DOMContentLoaded", () => {
+  const calendarContent = document.getElementById("calendar-content");
+  const diaryContent = document.getElementById("diary-content");
+  const galleryContent = document.getElementById("gallery-content");
+  const calendarBtn = document.getElementById("calendarBtn");
   const diaryBtn = document.getElementById("diaryBtn");
+  const galleryBtn = document.getElementById("galleryBtn");
+  const navIcons = document.querySelectorAll(".nav-icon");
   const modal = document.getElementById("diaryModal");
   const editBtn = document.getElementById("editDiary");
   const deleteBtn = document.getElementById("deleteDiary");
@@ -209,18 +276,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  //사이드 네비게이션 이벤트
+  calendarBtn.addEventListener("click", () => {
+    galleryContent.classList.add("hidden");
+    diaryContent.classList.add("hidden");
+    calendarContent.classList.remove("hidden");
+    navIcons.forEach(icon => icon.classList.remove('active'));
+    calendarBtn.classList.add('active');
+  });
+
+  diaryBtn.addEventListener("click", () => {
+    calendarContent.classList.add("hidden");
+    galleryContent.classList.add("hidden");
+    diaryContent.classList.remove("hidden");
+    navIcons.forEach(icon => icon.classList.remove('active'));
+    diaryBtn.classList.add('active');
+    renderDiaryList();
+  });
+
+  galleryBtn.addEventListener("click", () => {
+    calendarContent.classList.add("hidden");
+    diaryContent.classList.add("hidden");
+    galleryContent.classList.remove("hidden");
+    navIcons.forEach(icon => icon.classList.remove('active'));
+    galleryBtn.classList.add('active');
+  });
+
   //달력 날짜 클릭 이벤트
   document.querySelector("#calendar").addEventListener("click", (e) => {
     if (e.target.tagName === "TD" && e.target.textContent.trim() !== "") {
       const day = parseInt(e.target.textContent);
       openModal(currentYear, currentMonth, day);
     }
-  });
-
-  //일기장 버튼 클릭(오늘 날짜)
-  diaryBtn.addEventListener("click", () => {
-    //오늘 날짜로 모달 열기
-    openModal();
   });
 
   //수정 버튼
@@ -250,6 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
       selectedDate = null;
       isEditMode = false;
       getCalendar(currentYear, currentMonth);
+      renderDiaryList();
     }
   });
 
@@ -281,6 +369,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //달력 다시 그리기
     getCalendar(currentYear, currentMonth);
+    renderDiaryList();
   });
 
   //닫기 버튼
@@ -295,33 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //getCalendar 함수 실행
 getCalendar();
 
-/* -------------------- 화면 전환 파트 (수정됨) -------------------- */
-
-const calendarContent = document.getElementById("calendar-content");
-const galleryContent = document.getElementById("gallery-content");
-const calendarBtn = document.getElementById("calendarBtn");
-const galleryBtn = document.getElementById("galleryBtn");
-const navIcons = document.querySelectorAll(".nav-icon");
-
-calendarBtn.addEventListener("click", () => {
-  // 달력 보이기, 사진첩 숨기기
-  galleryContent.classList.add("hidden");
-  calendarContent.classList.remove("hidden");
-  // 활성 아이콘 스타일 변경
-  navIcons.forEach(icon => icon.classList.remove('active'));
-  calendarBtn.classList.add('active');
-});
-
-galleryBtn.addEventListener("click", () => {
-  // 사진첩 보이기, 달력 숨기기
-  calendarContent.classList.add("hidden");
-  galleryContent.classList.remove("hidden");
-  // 활성 아이콘 스타일 변경
-  navIcons.forEach(icon => icon.classList.remove('active'));
-  galleryBtn.classList.add('active');
-});
-
-/* -------------------- 사진첩 파트 (성연님) -------------------- */
+/* -------------------- 사진첩 파트 -------------------- */
 
 //사진첩 뷰 옵션
 const imageList = document.querySelector(".image-list");
@@ -376,12 +439,8 @@ rangeInput.addEventListener("input", function () {
 /* 검색 키워드로 필터 적용 */
 //캡션의 첫번째줄 변수
 const captions = document.querySelectorAll(".image-list figcaption p:first-child");
-
-//키워드 검색시 새로운 배열
 const myArray = [];
-//검색했을때 nth-child 순번이 필요함
 let counter = 1;
-// 캡션의 요소 하나하를 반복 캡션의 내용을 가져와서 myArray에 넣어줌
 for (const caption of captions) {
   myArray.push({
     id: counter++,
@@ -391,19 +450,13 @@ for (const caption of captions) {
 const searchInput = document.querySelector('input[type="search"]');
 const photosCounter = document.querySelector(".toolbar .counter span");
 
-//키를 입력하고 손을 땠을때(keyup) 개를 가지고 와서 배열을 넣어주라는 함수keyupHandler
-//keydown 키를 눌렀을때 꾹 누루고 있어도 한번만 작동, key/press 눌렀을때 꾹누루고 있으면 계속 작성됨
 searchInput.addEventListener("keyup", keyupHandler);
 
 function keyupHandler() {
-  //key를 떼는 순간 모두 안보여야함
-
   for (const item of imageListItems) {
     item.classList.add(dNone);
   }
-  //키를 작성한 내용
   const keywords = this.value;
-
   const filterArray = myArray.filter((el) =>
     el.text.toLowerCase().includes(keywords.toLowerCase())
   );

@@ -87,36 +87,50 @@
             </table>
           </div>
 
+          <!-- 일기 리스트 섹션 -->
+          <div id="diary-content" class="hidden">
+            <div class="diary-header">
+              <h2 class="diary-title">내 일기 목록</h2>
+            </div>
+            <div class="diary-list-container" id="diary-list">
+              <!-- 일기 리스트가 여기에 동적으로 생성 -->
+            </div>
+          </div>
+
           <div id="gallery-content" class="hidden">
             <div class="toolbar">
-              <div class="search-wrapper">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="search" placeholder="Search for photos" />
+              <div class="toolbar-top">
+                <div class="search-wrapper">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input type="search" placeholder="Search for photos" />
+                </div>
               </div>
-              <div class="counter">Total photos: <span>12</span></div>
-              <ul class="view-options gallery-ul">
-                <li class="zoom">
-                  <input type="range" min="180" max="380" value="280" />
-                </li>
-                <li class="show-grid active">
-                  <button class="gallery-btn">
-                    <img
-                      class="gallery-img"
-                      src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/grid-view.svg"
-                      alt="grid view"
-                    />
-                  </button>
-                </li>
-                <li class="show-list">
-                  <button class="gallery-btn">
-                    <img
-                      class="gallery-img"
-                      src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/list-view.svg"
-                      alt="list view"
-                    />
-                  </button>
-                </li>
-              </ul>
+              <div class="toolbar-bottom">
+                <div class="counter">Total photos: <span>12</span></div>
+                <ul class="view-options gallery-ul">
+                  <li class="zoom">
+                    <input type="range" min="180" max="380" value="280" />
+                  </li>
+                  <li class="show-grid active">
+                    <button class="gallery-btn">
+                      <img
+                        class="gallery-img"
+                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/grid-view.svg"
+                        alt="grid view"
+                      />
+                    </button>
+                  </li>
+                  <li class="show-list">
+                    <button class="gallery-btn">
+                      <img
+                        class="gallery-img"
+                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/list-view.svg"
+                        alt="list view"
+                      />
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
             <ol class="image-list grid-view gallery-ol">
               <li>

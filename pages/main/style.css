@@ -37,7 +37,7 @@
   font-display: swap;
 }
 
-/* GENERAL LAYOUT */
+/* 가장 큰 틀 */
 .big-container {
   font-family: "Dooneun";
   width: 100%;
@@ -224,6 +224,79 @@
   font-size: 20px;
 }
 
+/* DIARY LIST STYLES */
+#diary-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.diary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.diary-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #7a4e2d;
+  text-align: center;
+  flex-grow: 1;
+  border-bottom: 2px solid #f7cac9;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.diary-list-container {
+  width: 100%;
+  height: calc(100% - 60px);
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.diary-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(122, 78, 45, 0.1);
+  border: 1px solid #e2cfcf;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.diary-item:hover {
+  box-shadow: 0 4px 12px rgba(122, 78, 45, 0.2);
+  transform: translateY(-2px);
+  border-color: #f7cac9;
+}
+
+.diary-item-date {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #7a4e2d;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #f7cac9;
+  padding-bottom: 5px;
+}
+
+.diary-item-preview {
+  color: #666;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.no-diary-message {
+  text-align: center;
+  color: #7a4e2d;
+  font-size: 1.2rem;
+  margin-top: 50px;
+}
+
 /* DIARY MODAL STYLES */
 .modal {
   position: absolute;
@@ -334,12 +407,39 @@
 .gallery-a {
   color: inherit;
 }
+
+/* UPDATED GALLERY TOOLBAR */
 .toolbar {
+  margin-bottom: 25px;
+}
+.toolbar-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+.toolbar-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
-  gap: 15px;
+}
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-wrapper input[type="search"] {
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  height: 38px;
+  padding: 0 40px 0 15px;
+  width: 250px;
+}
+.search-wrapper .fa-magnifying-glass {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
 }
 .view-options {
   display: flex;
@@ -380,6 +480,7 @@
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(var(--minRangeValue), 1fr));
 }
+
 /* LIST VIEW*/
 .list-view li + li {
   margin-top: 1.5rem;
@@ -397,31 +498,6 @@
 }
 .hidden {
   display: none !important;
-}
-
-/* 검색창을 감싸는 컨테이너 */
-.search-wrapper {
-  position: relative; /* 아이콘을 배치할 기준점 */
-  display: flex;
-  align-items: center;
-}
-
-/* 검색창 input 스타일 */
-.search-wrapper input[type="search"] {
-  border: 1px solid #ddd;
-  border-radius: 20px; /* 둥근 모서리 */
-  height: 38px;
-  padding: 0 40px 0 15px; /* 오른쪽(아이콘 자리)과 왼쪽 여백 */
-  width: 250px; /* 검색창 너비 */
-}
-
-/* 돋보기 아이콘 스타일 */
-.search-wrapper .fa-magnifying-glass {
-  position: absolute; /* wrapper를 기준으로 자유롭게 위치 조정 */
-  right: 15px; /* 오른쪽에서 15px 떨어진 곳에 배치 */
-  top: 50%;
-  transform: translateY(-50%); /* 세로 중앙 정렬 */
-  color: #999;
 }
 
 /* 반응형 */
