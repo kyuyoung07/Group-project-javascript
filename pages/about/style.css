@@ -7,21 +7,32 @@
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 
+/* 메인 배경    따뜻한 살구    #ffe5b4
+포인트 배경    부드러운 민트/그린    #b7d2cc
+네비/버튼    밝은 오렌지    #ffb385
+텍스트    브라운 계열    #7a4e2d
+서브 배경    크림 베이지    #f9e7d9
+서브 포인트    따뜻한 핑크    #f7cac9
+서브 포인트    파스텔 오렌지    #ffd6a5
+서브 배경    밝은 샌드    #f6e7cb
+서브 포인트    연한 로즈    #e2cfcf */
 /* ======================================nav아이템====================================== */
 .sub-Page-Nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 64px;
-  background-color: gray;
+  background-color: #ffb385;
   width: 100%;
 }
 
 .logoItem {
   margin-left: 10px;
   width: 33%;
+  padding-bottom: 10px;
 }
 
 .navItem {
@@ -36,8 +47,13 @@ body {
   margin: 0 10px;
   width: 33%;
   justify-content: end;
-}
 
+
+}
+.userImg{
+  border-radius: 50%;
+  height: 50px;
+}
 .navMenu {
   display: flex;
   justify-content: space-evenly;
@@ -46,30 +62,31 @@ body {
 
 .navMenu a {
   text-decoration: none;
-  color: black;
+  color: #7a4e2d;
 }
 
 .navMenu a:hover {
-  color: aqua;
+  color: #f6e7cb;
 }
 
 .userImage a {
   text-decoration: none;
-  color: black;
+  color: #7a4e2d;
 }
 
 .userImage a:hover {
-  color: aqua;
+  color: #f6e7cb;
 }
 
 /* ======================================Main아이템====================================== */
 .sub-Page-Main {
   height: calc(100% - 64px);
-  background-color: rgb(199, 198, 198);
+  background-color: #ffe5b4;
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 3% 25% 0 25%;
+  color: #7a4e2d;
 }
 
 .mainTopItem {
@@ -82,10 +99,10 @@ body {
 }
 
 .underBar {
-  width: 125px;
+  width: 145px;
   text-align: center;
   height: 3px;
-  background-color: black;
+  background-color: #7a4e2d;
 }
 
 .mainTopItemTwo {
@@ -94,11 +111,11 @@ body {
 
 .mainTopItemTwo a {
   text-decoration: none;
-  color: black;
+  color: #7a4e2d;
 }
 
 .mainTopItemTwo a:hover {
-  text-decoration: underline paleturquoise;
+  text-decoration: 10px underline #f6e7cb;
   text-underline-offset: 5px;
   text-decoration-thickness: 3px;
 }
@@ -111,8 +128,8 @@ body {
 }
 
 .writeBtn {
-  background-color: black;
-  color: white;
+  background-color: #ffb385;
+  color: #7a4e2d;
   border-radius: 8px;
   width: 60px;
   height: 32px;
@@ -122,19 +139,18 @@ body {
 }
 
 .writeBtn:hover {
-  background-color: rgb(85, 48, 48);
+  background-color: #7a4e2d;
 }
 
 #searchInput {
   border-radius: 5px;
   outline: none;
-  border: 3px solid rgba(0, 0, 0, 0.856);
+  border: 3px solid #ffb385;
   padding-left: 5px;
   margin-right: 7px;
   height: 32px;
   width: 212px;
 }
-
 .searchBtn {
   background-color: transparent;
   border: none;
@@ -153,8 +169,8 @@ body {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  border-top: 2px solid black;
-  border-bottom: 1px solid black;
+  border-top: 2px solid #7a4e2d;
+  border-bottom: 1px solid #7a4e2d;
   align-items: center;
   height: 42px;
   font-size: 14px;
@@ -175,7 +191,7 @@ body {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #7a4e2d;
   align-items: center;
   height: 42px;
   font-size: 14px;
@@ -254,4 +270,54 @@ body {
   padding: 0 10px;
   box-sizing: border-box;
   width: 92%;
+}
+
+/* ======================================ModalDetail아이템====================================== */
+
+.modal-header {
+  border-bottom: none !important;
+}
+
+.detail-title {
+  margin-bottom: 20px;
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.detail-time-Author {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 1px solid gray;
+  padding-bottom: 5px;
+}
+
+.detail-box {
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+
+
+.answerBtn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.answerInput {
+  padding: 0 5px;
+  outline: 1px solid #ffb385;
+  outline-offset: -1px;
+  
+}
+.answerInput:focus{
+  outline: 3px solid #7a4e2d;
+    outline-offset: -3px;
+}
+.answer-item {
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
 }

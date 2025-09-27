@@ -1,21 +1,20 @@
 //글쓰기 버튼 누르면 이동하는 것과 검색 기능, 동적으로 하단의 메뉴들 정보 저장
 //로컬스토리지 함수를 사용하여 로컬에 값을 저장하고 그 값을 꺼내와 title이라는 객체로 저장해 그 title값을 제목란에 보여주기
 //작성시간과 글쓴이는 어떻게 할지 고민중
-const qTitle = document.getElementById("input-Title");
-const qDetail = document.getElementById("input-Detail");
-const writeSaveBtn = document.querySelector(".saveBtn");
-const detailList = document.querySelector("#detail");
-const AskModalBtn = document.querySelector(".listTitle");
-const detailBtn = document.querySelector(".detailModal");
-const modalBody = document.querySelector(".detailBody");
+const qTitle = document.getElementById('input-Title');
+const qDetail = document.getElementById('input-Detail');
+const writeSaveBtn = document.querySelector('.saveBtn');
+const detailList = document.querySelector('#detail');
+const AskModalBtn = document.querySelector('.listTitle');
+const detailBtn = document.querySelector('.detailModal');
+const modalBody = document.querySelector('.detailBody');
 
 //로컬스토리지 겟 아이템은 항상 문자열을 반환하기에 우리가 쓸 수 있는 값으로 반환 parse를 사용
-const userAskList = JSON.parse(localStorage.getItem("userAskList")) || [];
-
+const userAskList = JSON.parse(localStorage.getItem('userAskList')) || [];
 
 function getCalculateTime(dateString) {
   // 날짜가 없거나 유효하지 않으면 "방금 전" 반환
-  if (!dateString) return "방금 전";
+  if (!dateString) return '방금 전';
 
   //현재 시간 저장
   const now = new Date();
@@ -31,7 +30,7 @@ function getCalculateTime(dateString) {
   const day = hour * 24;
 
   if (differntTime < minute) {
-    return "방금 전";
+    return '방금 전';
   } else if (differntTime < hour) {
     const minutes = Math.floor(differntTime / minute);
     return `${minutes}분전`;
@@ -45,27 +44,27 @@ function getCalculateTime(dateString) {
 }
 
 if (userAskList.length > 0) {
-  let htmlContent = "";
+  let htmlContent = '';
   userAskList.forEach((post) => {
-    htmlContent += `<div class="datail-List">
+    htmlContent += `<div class="datail-List" >
             <div class="listTitle detailModal" data-bs-toggle="modal"
           data-bs-target="#detailModal" onclick="showPostDetail(${post.id})">${
       post.title
     }</div>
             <div class="list-RightBox">
-              <div class="listAuthor">${post.id}</div>
+              <div class="listAuthor">누군가</div>
               <div class="listTime">${getCalculateTime(post.date)}</div>
             </div>
           </div>`;
   });
   detailList.innerHTML = htmlContent;
 } else {
-  detailList.innerHTML = "<p>작성된 글이 없습니다</p>";
+  detailList.innerHTML = '<p>작성된 글이 없습니다</p>';
 }
 
-writeSaveBtn.addEventListener("click", () => {
+writeSaveBtn.addEventListener('click', () => {
   if (qTitle.value.trim()) {
-    let lastPost = JSON.parse(localStorage.getItem("userAskList")) || [];
+    let lastPost = JSON.parse(localStorage.getItem('userAskList')) || [];
 
     let userAsk = {
       id: Date.now(),
@@ -77,17 +76,17 @@ writeSaveBtn.addEventListener("click", () => {
     lastPost.unshift(userAsk);
 
     //로컬 스토리지는 문자열만 저장가능하기에 그걸 집어넣어놓고
-    localStorage.setItem("userAskList", JSON.stringify(lastPost));
+    localStorage.setItem('userAskList', JSON.stringify(lastPost));
     location.reload();
   } else {
-    alert("제목과 내용을 입력해주세요");
+    alert('제목과 내용을 입력해주세요');
   }
 });
 
 function showPostDetail(postId) {
   //로컬스토리지로 인해서 객체를 문자열로 반환해서 사용하는데
   //parse를 이용해 문자열을 객체로 다시 변환해 사용한다.
-  const userAskList = JSON.parse(localStorage.getItem("userAskList")) || [];
+  const userAskList = JSON.parse(localStorage.getItem('userAskList')) || [];
   //내 객체들을 찾아라 post를 post는 배열의 각요소를 하나씩 받아오는 역할임.
   //그리고 그 객체들의 id값이 내가 받아온 id값과 같으면 변수에 저장해라.
   const selectedPost = userAskList.find((post) => post.id === postId);
@@ -101,24 +100,61 @@ function showPostDetail(postId) {
     //셀렉트 포스트가 들어가는 이유는 결국 맞는 값을 받아왔기에 if문이 생성되는거라
     //그냥 그 selectPost의 title과 date detail 객체를 받아와서 넣어라
     modalBody.innerHTML = `
-      <div>제목 : ${selectedPost.title}</div>
-      <div>
-        <span>작성 시간: ${getCalculateTime(selectedPost.date)}</span>
+      <div class="detail-title">${selectedPost.title}</div>
+      <div class="detail-time-Author">
         <span>글쓴이: 누군가</span>
+        <span>작성 시간: ${getCalculateTime(selectedPost.date)}</span>
       </div>
-      <div>내용 : ${selectedPost.detail}</div>
-      <div class="answerBox">답변달리는 곳이여유</div>
+      <div class="detail-box">내용 : ${selectedPost.detail}</div>
+      <div class="answerBox"></div>
       <div>
-        <input type="text" placeholder="답변달기" />
-        <button type="submit">답변</button>
+        <input type="text" placeholder="답변달기" class='answerInput'/>
+        <button type="submit" class='answerBtn'>답변</button>
       </div>
     `;
+    displayAnswers(postId);
   }
+  const answerBtn = document.querySelector('.answerBtn');
+  const answerInput = document.querySelector('.answerInput');
+
+  answerBtn.addEventListener('click', () => {
+    if (answerInput.value.trim()) {
+      const answerList = JSON.parse(localStorage.getItem('answerList')) || [];
+
+      const newAnswer = {
+        id: Date.now(),
+        postId: postId,
+        content: answerInput.value,
+        date: new Date().toISOString(),
+      };
+      answerList.push(newAnswer);
+      localStorage.setItem('answerList', JSON.stringify(answerList));
+      answerInput.value = '';
+      displayAnswers(postId);
+    } else {
+      alert('답변을 입력해주세요');
+    }
+  });
+}
+function displayAnswers(postId) {
+  const answerBox = document.querySelector('.answerBox');
+  const answerList = JSON.parse(localStorage.getItem('answerList')) || [];
+
+  //현재 게시글에 id값과 내 현재 작성하고 있는 id값이 같은지 확인 결국 id값이 같고 그 곳에 내가 작성 중인가 확인
+  const postAnswers = answerList.filter((answer) => answer.postId === postId);
+  //값이 들어갈 저장소
+  let answerHtml = '';
+  postAnswers.forEach((answer) => {
+    answerHtml += `<div class="answer-item">
+        <div class="answer-content">${answer.content}</div>
+        <div class="answer-time">답글 작성: ${getCalculateTime(
+          answer.date
+        )}</div>
+      </div>
+    `;
+  });
+  answerBox.innerHTML = answerHtml;
 }
 
-
-//수정할 수 있게 됨.
-//삭제
-
-
-
+//메인 페이지에서 수정 삭제. 
+//질문 및 답변에서 질문, 답변 수정 삭제
