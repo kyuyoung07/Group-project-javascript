@@ -1,17 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;"
+    />
+    <title>메인 페이지</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <!--헤더추가-->
+      <!--상단 네비게이션-->
+      <nav>
+        <div class="nav-logo">
+          <a class="navbar-brand" href="#">
+            <img src="images/logo.png" alt="Logo" class="logo-img" />
+          </a>
+        </div>
+        <div>
+          <ul class="gnb">
+            <li><a href="login/index.html">Login/</a></li>
+            <li><a href="sighup/index.html">Join/</a></li>
+            <li><a href="q&a/index.html">Q&A</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!--사이드바-->
+    <div class="navSideBar">
+      <div class="nav-icon nav-calendar" data-bs-toggle="tooltip" title="달력">
+        <i class="fa-solid fa-calendar-days"></i>
+      </div>
+      <div
+        class="nav-icon dairy-btn"
+        data-bs-toggle="tooltip"
+        title="일기장"
+        id="diaryBtn"
+      >
+        <i class="fa-solid fa-book"></i>
+      </div>
+      <div class="nav-icon nav-pic" data-bs-toggle="tooltip" title="사진첩">
+        <i class="fa-solid fa-image"></i>
+      </div>
+      <div class="nav-icon" data-bs-toggle="tooltip" title="검색">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
+    <div class="big-container">
+      <!--/사이드바-->
+      <!-- 달력 -->
+      <section class="calendar-view">
+        <div class="container">
+          <div class="calendar-header">
+            <button id="prevBtn" class="nav-btn">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <h2 style="text-align: center" id="monthYear"></h2>
+            <button id="nextBtn" class="nav-btn">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+          <table id="calendar">
+            <thead>
+              <tr>
+                <th>일</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+              </tr>
+            </thead>
+            <tbody id="calendar-body"></tbody>
+          </table>
+          <div id="diaryModal" class="modal">
+            <div class="modal-content">
+              <h3 id="modalTitle">오늘의 일기</h3>
+              <textarea
+                id="diaryText"
+                placeholder="오늘 하루를 기록해보세요..."
+              ></textarea>
+              <div class="modal-actions">
+                <button id="saveDiary">저장</button>
+                <button id="closeModal">닫기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /달력 -->
+      <!-- 사진 -->
+      <section class="gallery main pic-view">
+        <div class="container">
+          <div class="toolbar">
+            <!-- 검색창 -->
+            <div class="search-wrapper">
+              <input type="search" placeholder="Search for photos" />
+              <div class="counter">Total photos: <span>12</span></div>
+            </div>
+            <!-- 우측 확대, -->
+            <ul class="view-options">
+              <li class="zoom">
+                <input type="range" min="180" max="380" value="280" />
+              </li>
+              <!-- 리스트 버튼 -->
+              <li class="show-grid active">
+                <button>
+                  <img
+                    src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/grid-view.svg"
+                    alt="grid view"
+                  />
+                </button>
+              </li>
+              <li class="show-list">
+                <button>
+                  <img
+                    src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/list-view.svg"
+                    alt="list view"
+                  />
+                </button>
+              </li>
+            </ul>
+          </div>
+          <!-- 이미지 -->
+          <ol class="image-list grid-view">
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature1.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>그린 절벽 나무</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@redcharlie" target="_blank"
+                      >redcharlie</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature2.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>강원도 태백산</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@wilstewart3" target="_blank"
+                      >Wil Stewart</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature3.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>blue starry night</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@ignitedit" target="_blank"
+                      >Mark Basarab</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature4.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>aerial island and beaches</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@phiestyphung" target="_blank"
+                      >Amanda Phung</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature5.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>forest pathway</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@elke_karin" target="_blank"
+                      >Elke Karin Lugert</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature6.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>photo of two black, white, and orange koi fish</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@s_sagano" target="_blank"
+                      >Sora Sagano</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature7.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>landscape photo of brown mountain</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@darrylbrian" target="_blank"
+                      >Darryl Brian</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature8.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>moon illustration</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@metatzon297" target="_blank"
+                      >Shin Roran</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature9.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>bird's eye view of body of water</p>
+                  <p>
+                    Photo by
+                    <a
+                      href="https://unsplash.com/@timmossholder"
+                      target="_blank"
+                      >Tim Mossholder</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature10.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>high-angle photography of rural area</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@stlobe" target="_blank"
+                      >Steven Wong</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature11.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>silhoutte of mountains during sunset</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@von_co" target="_blank"
+                      >Ivana Cajina</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/unsplash_nature12.jpg"
+                  alt=""
+                />
+                <figcaption>
+                  <p>bird's-eye view of mountain rang</p>
+                  <p>
+                    Photo by
+                    <a href="https://unsplash.com/@leni_eleni" target="_blank"
+                      >Elena Prokofyeva</a
+                    >
+                  </p>
+                </figcaption>
+              </figure>
+            </li>
+          </ol>
+        </div>
+      </section>
+      <!-- /사진 -->
+    </div>
 
-    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
     <!--공통JS-------------------->
     <script src="main.js"></script>
     <!--페이지 전용 JS--------------->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

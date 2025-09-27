@@ -1,161 +1,507 @@
-/* Import Local CSS */
-@import url('reset.css');
-@import url('variables.css');
-
+:root {
+  --black: #1a1a1a;
+  --white: #fff;
+  --gray: #ccc;
+  --darkgreen: #18846C;
+  --lightbrown: antiquewhite;
+  --darkblack: rgba(0,0,0,0.8);
+  --minRangeValue: 280px;
+}
 * {
-  font-family: var(--primary-kr);
-  font-weight: 300;
-}
-body {
-  background-color: var(--main);
   margin: 0;
-  color: var(--dark-black);
-  line-height: 1.5em;
-  font-size: 14px;
-}
-
-/* #### Common CSS #### */
-
-/* Layout CSS */
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center; 
-  align-items:center;
-  height: 100vh;
-}
-.signin{
-  width: 500px;
-  padding: 30px;
-  /* border:1px solid #eee;
-  border-radius: 5px;
-  box-shadow: 0 0 25px rgba(186, 181, 181, 0.2); */
+  padding: 0;
   box-sizing: border-box;
-  
 }
-.signin-photo {
-  height: 150px;
-  background: url('/images/background.jpg') no-repeat ;
-  background-position: center center;
-  margin-bottom: 20px;
-  }
-.sign-header {
-  text-align: center;
+a{
+  text-decoration: none;
 }
-.sign-header .logo {
-  font-family: var( --logo-en);
-  font-size: 24px;
+ol,
+ul {
+  list-style: none;
 }
-.sign-header p {
-  font-size: 16px;
-  font-weight: 400;
+@font-face {
+  font-family: "Dooneun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Donoun-Medium.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-display: swap;
 }
-.signin-field input {
-  border: 1px solid var(--third);
-  padding: 20px 20px;
-  width: 100%;
-  border-radius: 10px;
-  margin: 5px 0;
-  transition: .3s;
+@font-face {
+  font-family: "Sweet";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Light.woff2")
+    format("woff2");
+  font-weight: 300;
+  font-display: swap;
 }
-.signin-field input:hover{
-  box-shadow: 0 0 0 1px var(--third);
+@font-face {
+  font-family: "NanumSquareRound";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff")
+    format("woff");
+  font-weight: normal;
+  font-display: swap;
 }
-.signin-field input:focus {
-  background: var(--snow);
+/* .big-container {
+  font-family: "Dooneun";
+  padding-top: 20px;
+ 
+  background-color: #ffe5b4; /* 메인 배경 따뜻한 살구 
+} */
+ body{
+  overflow: hidden;
+ }
+header{
+  font-family: "Dooneun";
+  position: fixed;
+  display: flex;
+  width: 100%; 
+  height: 120px;
+  background-color: #ffb385; /* 네비/버튼 밝은 오렌지 */
+  box-shadow: 0 5px 5px rgba(0,0,0,0.1);
 }
-.signin-field input::placeholder {
-  color: var(--silver-gray);
-  transition: 0.35s;
-}
-.signin-field input:focus::placeholder {
-  opacity: 0;
-}
-
-.status {
-  margin: 15px 0;
+nav{
+  width: 100%; 
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
-.custom-chk label input[type=checkbox] {
+.nav-logo {
+  padding: 0;
+  padding-bottom: 10px;
+  color: #397a2d; /* 텍스트 브라운 계열 */
+  width: 120px; 
+  width: 120px; 
+}
+ .gnb {
+  display: flex;
+  justify-content:center;
+  gap: 10px;
+  margin-right: 100px;
+}
+.gnb a{
+color: #7a4e2d;
+}
+.user{
+  font-size: 30px;
+
+}
+/* 사이드바 */
+.navSideBar {
+  top: 120px;
+  width: 60px;
+  background: #f6e7cb; /* 서브 배경 밝은 샌드 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  border-right: 2px solid #f7cac9; /* 서브 포인트 따뜻한 핑크 */
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  z-index: 1000;
+}
+.nav-icon {
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  margin: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: #7a4e2d; /* 텍스트 브라운 계열 */
+}
+.nav-icon:hover {
+  background: #ffd6a5; /* 서브 포인트 파스텔 오렌지 */
+  color: #7a4e2d;
+  cursor: pointer;
+}
+.nav-icon.active {
+  background: #ffd6a5; /* 서브 포인트 파스텔 오렌지 */
+  color: #7a4e2d;
+}
+/* nav버튼 클릭시----------------------- */
+.calendar-view{
+  display: block;
+}
+.pic-view{
   display: none;
+}
+.pic-view.active{
+  display: block;
+}
+.calendar-view.active{
+  display: none;
+}
 
+
+
+
+
+/*********달력 ***************************/
+.calendar-view,
+.pic-view{
+  padding-top: 120px;
+  background: #ffd6a5;
+  height: 100vh;
+  font-family: "Dooneun";
 }
-.custom-chk label input[type=checkbox]  + em {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  transform: translateY(5px);
-  margin-right: 3px;
-  cursor: pointer;
+/*달력 안 박스*/
+.container {
+  margin-top: 10px;
+  max-width: 80vw;
+  height: 80vh;
+  padding-top: 2vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  position: relative;
+  background: #f9e7d9; /* 서브 배경 크림 베이지 */
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(122, 78, 45, 0.15);
+  border: 1px solid #e2cfcf; /* 서브 포인트 연한 로즈 */
 }
-.custom-chk label input[type=checkbox] + em:before {
-  content: '\F26B';
-  font-family: bootstrap-icons;
-  font-style: normal;
-  color: var(--light-gray);
-  transform: translateY(-3px);
-  display: inline-block;
-}
-.custom-chk label input[type=checkbox]:checked + em:before {
-  color: var(--point);
-}
-/* Button CSS */
-.btn-signin {
-  cursor: pointer;
-   font-size: 18px;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
+/*달력 헤더(제목+버튼)*/
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
   width: 100%;
+}
+/* 달력 제목(년/월) */
+#monthYear {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #7a4e2d;
+  flex-grow: 1;
+  margin: 0;
+}
+/*네비 버튼*/
+.nav-btn {
+  background: #3eb489;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(62, 180, 137, 0.3);
+}
+.nav-btn:hover {
+  background: #2a9d73;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(62, 180, 137, 0.4);
+}
+.nav-btn:active {
+  transform: scale(0.95);
+}
+/* 달력 전체 */
+#calendar {
+  border-collapse: collapse;
+  width: 100%;
+  height: calc(100% - 80px);
+  box-shadow: 0 8px 25px rgba(122, 78, 45, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #fff;
+  font-family: "NanumSquareRound", "Dooneun", "Sweet", "Segoe UI", Tahoma,
+    Verdana, sans-serif;
+}
+/* 달력 헤더(요일) */
+#calendar thead th {
+  background-color: #3eb489; /* 연민트색 */
+  color: #fff; /* 텍스트 브라운 계열 */
+  padding: 10px 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  border-bottom: 2px solid #a8c5be;
+  width: 14.28%;
+  text-align: center;
+}
+/* 달력 날짜 셀 */
+#calendar tbody td {
+  text-align: center;
+  padding: 8px 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fefefe;
+  font-size: 1rem;
+  font-weight: 500;
+  height: calc((100% - 50px) / 6);
+  vertical-align: middle;
+  border-bottom: 1px solid #f7cac9;
+  border-right: 1px solid #f7cac9;
+  width: 14.28%; /* 7개 열이 균등하게 */
+}
+/* 날짜에 마우스 올리면 하이라이트 */
+#calendar tbody td:hover {
+  background-color: #c4f0dc; /* 연민트 연한 톤 */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(122, 78, 45, 0.2);
+}
+/* 오늘 날짜 강조 */
+#calendar tbody td.today {
+  background-color: #ffecb3;
+  font-weight: bold;
+  border-radius: 8px;
+  color: #7a4e2d; /* 텍스트 브라운 계열 */
+  box-shadow: 0 4px 12px rgba(255, 179, 133, 0.4);
+  transform: scale(1.1);
+  border: 2px solid #f7cac9; /* 서브 포인트 따뜻한 핑크 테두리 */
+}
+/* 주말 색상 구분 */
+#calendar tbody td:first-child {
+  color: #d2691e; /* 일요일 - 따뜻한 오렌지 톤 */
+}
+#calendar tbody td:last-child {
+  color: #8b4513; /* 토요일 - 깊은 브라운 톤 */
+}
+/* 모달 기본 숨김 */
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+/* 모달 내용 */
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal-content textarea {
+  width: 100%;
+  height: 150px;
+  resize: none;
   padding: 8px;
-  background-color: var(--button);
 }
-.btn-signin:hover{
-  background: var(--hover);
-  transition:.3s;
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.diary-btn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  background-color: #f7cac9;
+  border-radius: 8px;
+}
+/* 사진으로 보기–––––––––––––––––––––––––––––––––––––––––––– */
+.pic-view{
+  display: none;
+}
+.pic-view .container{
+ position: relative;
+ padding-top: 0;
+}
+.pic-view .container .toolbar{
+  position: fixed;
+  display: block;
+  width: 80%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.search-wrapper{
+  margin-left: 1.2rem;
+}
+.view-options{
+  display: flex;
+  align-items: center;
+}
+.view-options li{
+  margin-right: 1.2rem;
+}
+.view-options button{
+  padding: 2px;
+  border: 3px solid transparent;
+}
+.view-options .active button{
+  border-color: var(--darkgreen);
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.d-none {
+  display: none;
+}
+/* IMAGE LIST
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.image-list{
+  margin-top: 80px;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+  margin-bottom: 3rem;
+  padding: 0;
+}
+.image-list li{
+  padding-right: 10px;
+  background: var(--lightbrown);
+  color: var(--darkgreen);
+}
+.image-list li p:first-child{
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+.image-list li p:last-child{
+ margin-top:0.5rem;
+}
+
+/* GRID VIEW
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.grid-view{
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit,minmax(var(--minRangeValue),1fr));
+}
+/* LIST VIEW
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.list-view li+li{
+margin-top: 1.5rem;
+}
+.list-view figure{
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 반응형 */
+@media (max-width: 768px) {
+header{
+  height: 70px;
+}
+
+
+/*달력 안 박스*/
+.container {
+  margin-top: 10px;
+  max-width: 90vw;
+  max-height: 80vh;
+  padding-top: 2vh;
+}
+.nav-logo{
+width: 80px;
+}
+.gnb{
+    margin-right: 0;
+}
+  #calendar thead th,
+  #calendar tbody td {
+    padding: 6px 2px;
+    font-size: 0.8rem;
+  }
+  #monthYear {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  .nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+  .navSideBar {
+    position: fixed;
+    top: 92%;
+    border: 1px solid #000;
+    left:0;
+    right: 0;
+    top:100;
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-top: 2px solid #f7cac9;
+    border-right: none;
+  }
+    .toolbar input[type="range"]{
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+.calendar-view,
+.pic-view{
+  padding-top: 80px;
+  width: 100%;
+  height: 100vh;
+}
+  .container {
+    width: 100%;
+    height: 100vh;
+  }
   
+  #calendar thead th,
+  #calendar tbody td {
+    padding: 4px 1px;
+    font-size: 0.75rem;
+  }
+  #monthYear {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+  .nav-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+.search-wrapper {
+    margin-left: 0;
+    width: 50%;
 }
-.custom-chk a:hover{
-  text-decoration: underline;
+.toolbar{
+  width:100%;
+  justify-content:flex-start
 }
-.join-member {
-  text-align: center;
-  margin: 15px 0;
-}
-.join-member a {
-  text-decoration: underline;
-}
-.join-member a:hover {
-  color: var(--point);
+.view-options button{
+ width: 25px;
+ height: 25px;
+ padding: 3px;
+ display: inline-block;
+ 
 }
 
 
-.easy-signin {
-  text-align: center;
-}
-.easy-signin span {
-  color: var(--light-gray);
-}
-.social-btn {
-  margin: 10px 0;
-}
-.social-btn a {
-  margin: 2px;
 }
 
 
-/* For Big Size Mobile & Tablet Device */
- @media (max-width: 768px){
-  .signin{
-  width: 60%;
-}
- .sign-header .logo {
-
-  font-size: 20px;
-}
-.sign-header p {
-  font-size: 12px;
-  
-}
-}
