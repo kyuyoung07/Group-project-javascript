@@ -62,27 +62,6 @@ if (userAskList.length > 0) {
   detailList.innerHTML = '<p>작성된 글이 없습니다</p>';
 }
 
-writeSaveBtn.addEventListener('click', () => {
-  if (qTitle.value.trim()) {
-    let lastPost = JSON.parse(localStorage.getItem('userAskList')) || [];
-
-    let userAsk = {
-      id: Date.now(),
-      title: qTitle.value,
-      detail: qDetail.value,
-      date: new Date().toISOString(),
-    };
-    //배열에 맨 앞에 요소를 추가
-    lastPost.unshift(userAsk);
-
-    //로컬 스토리지는 문자열만 저장가능하기에 그걸 집어넣어놓고
-    localStorage.setItem('userAskList', JSON.stringify(lastPost));
-    location.reload();
-  } else {
-    alert('제목과 내용을 입력해주세요');
-  }
-});
-
 function showPostDetail(postId) {
   //로컬스토리지로 인해서 객체를 문자열로 반환해서 사용하는데
   //parse를 이용해 문자열을 객체로 다시 변환해 사용한다.
@@ -106,6 +85,10 @@ function showPostDetail(postId) {
         <span>작성 시간: ${getCalculateTime(selectedPost.date)}</span>
       </div>
       <div class="detail-box">내용 : ${selectedPost.detail}</div>
+      <div class="post-buttons">
+        <button onclick="editPost(${selectedPost.id})" class="btn btn-warning btn-sm">수정</button>
+        <button onclick="deletePost(${selectedPost.id})" class="btn btn-danger btn-sm">삭제</button>
+      </div>
       <div class="answerBox"></div>
       <div>
         <input type="text" placeholder="답변달기" class='answerInput'/>
@@ -146,15 +129,131 @@ function displayAnswers(postId) {
   let answerHtml = '';
   postAnswers.forEach((answer) => {
     answerHtml += `<div class="answer-item">
-        <div class="answer-content">${answer.content}</div>
-        <div class="answer-time">답글 작성: ${getCalculateTime(
-          answer.date
-        )}</div>
-      </div>
-    `;
+    <div class="answer-content">${answer.content}</div>
+    <div class="answer-time">답글 작성: ${getCalculateTime(answer.date)}</div>
+    <div class="answer-buttons">
+      <button onclick="editAnswer(${answer.id}, ${postId})" class="btn btn-sm btn-outline-warning">수정</button>
+      <button onclick="deleteAnswer(${answer.id}, ${postId})" class="btn btn-sm btn-outline-danger">삭제</button>
+    </div>
+  </div>`;
   });
   answerBox.innerHTML = answerHtml;
 }
 
-//메인 페이지에서 수정 삭제. 
+//메인 페이지에서 수정 삭제.
 //질문 및 답변에서 질문, 답변 수정 삭제
+//검색 할 때 관련 Q&A 서치할 수 있게 이벤트리스너 click으로 확인
+
+function deletePost(postId) {
+  if (confirm('정말로 삭제하시겠습니까?')) {
+    // 질문 삭제
+    let userAskList = JSON.parse(localStorage.getItem('userAskList')) || [];
+    userAskList = userAskList.filter(post => post.id !== postId);
+    localStorage.setItem('userAskList', JSON.stringify(userAskList));
+    
+    // 해당 질문의 답변들도 함께 삭제
+    let answerList = JSON.parse(localStorage.getItem('answerList')) || [];
+    answerList = answerList.filter(answer => answer.postId !== postId);
+    localStorage.setItem('answerList', JSON.stringify(answerList));
+    
+    // 모달 닫고 페이지 새로고침
+    bootstrap.Modal.getInstance(document.getElementById('detailModal')).hide();
+    location.reload();
+  }
+}
+let editingPostId = null; // 수정 중인 포스트 ID 저장
+
+function editPost(postId) {
+  const userAskList = JSON.parse(localStorage.getItem('userAskList')) || [];
+  const post = userAskList.find(p => p.id === postId);
+  
+  if (post) {
+    // 기존 값으로 채우기
+    document.getElementById('input-Title').value = post.title;
+    document.getElementById('input-Detail').value = post.detail;
+    
+    // 수정 모드 설정
+    editingPostId = postId;
+    document.querySelector('#exampleModalLabel').textContent = '질문 수정';
+    document.querySelector('.saveBtn').textContent = '수정';
+    
+    // detailModal 닫고 writeModal 열기
+    bootstrap.Modal.getInstance(document.getElementById('detailModal')).hide();
+    new bootstrap.Modal(document.getElementById('writeModal')).show();
+  }
+}
+
+writeSaveBtn.addEventListener('click', () => {
+  if (qTitle.value.trim()) {
+    let userAskList = JSON.parse(localStorage.getItem('userAskList')) || [];
+    
+    if (editingPostId) {
+      // 수정 모드
+      const postIndex = userAskList.findIndex(post => post.id === editingPostId);
+      if (postIndex !== -1) {
+        userAskList[postIndex].title = qTitle.value;
+        userAskList[postIndex].detail = qDetail.value;
+        userAskList[postIndex].editDate = new Date().toISOString();
+      }
+      editingPostId = null; // 수정 모드 해제
+    } else {
+      // 새 글 작성 모드
+      let userAsk = {
+        id: Date.now(),
+        title: qTitle.value,
+        detail: qDetail.value,
+        date: new Date().toISOString(),
+      };
+      userAskList.unshift(userAsk);
+    }
+    
+    localStorage.setItem('userAskList', JSON.stringify(userAskList));
+    
+    // 폼 초기화
+    qTitle.value = '';
+    qDetail.value = '';
+    document.querySelector('#exampleModalLabel').textContent = '질문 작성';
+    document.querySelector('.saveBtn').textContent = '저장';
+    
+    location.reload();
+  }
+});
+
+function editAnswer(answerId, postId) {
+  const answerList = JSON.parse(localStorage.getItem('answerList')) || [];
+  const answer = answerList.find(a => a.id === answerId);
+  
+  if (answer) {
+    const newContent = prompt('답변 수정:', answer.content);
+    
+    if (newContent && newContent.trim()) {
+      // 배열에서 해당 답변 찾아서 수정
+      const answerIndex = answerList.findIndex(a => a.id === answerId);
+      answerList[answerIndex].content = newContent;
+      answerList[answerIndex].editDate = new Date().toISOString();
+      
+      localStorage.setItem('answerList', JSON.stringify(answerList));
+      displayAnswers(postId); // 답변 목록 다시 로드
+    }
+  }
+}
+
+function deleteAnswer(answerId, postId) {
+  if (confirm('답변을 삭제하시겠습니까?')) {
+    let answerList = JSON.parse(localStorage.getItem('answerList')) || [];
+    answerList = answerList.filter(answer => answer.id !== answerId);
+    
+    localStorage.setItem('answerList', JSON.stringify(answerList));
+    displayAnswers(postId); // 답변 목록 다시 로드
+  }
+}
+function resetWriteModal() {
+  editingPostId = null;
+  document.getElementById('input-Title').value = '';
+  document.getElementById('input-Detail').value = '';
+  document.querySelector('#exampleModalLabel').textContent = '질문 작성';
+  document.querySelector('.saveBtn').textContent = '저장';
+}
+
+// 글쓰기 버튼 클릭 시 모달 초기화
+document.querySelector('.writeBtn').addEventListener('click', resetWriteModal);
