@@ -1,7 +1,19 @@
+/* RESET & FONT RULES */
+:root {
+  --black: #1a1a1a;
+  --white: #fff;
+  --gray: #ccc;
+  --darkgreen: #18846c;
+  --lightbrown: antiquewhite;
+  --darkblack: rgba(0, 0, 0, 0.8);
+  --minRangeValue: 280px;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
+  border: none;
 }
 @font-face {
   font-family: "Dooneun";
@@ -25,7 +37,7 @@
   font-display: swap;
 }
 
-/* 가장 큰 배경 */
+/* GENERAL LAYOUT */
 .big-container {
   font-family: "Dooneun";
   width: 100%;
@@ -33,7 +45,7 @@
   background-color: #ffe5b4; /* 메인 배경 따뜻한 살구 */
 }
 
-/* 네브바 로고 */
+/* NAVBAR & SIDEBAR */
 .nav-logo {
   background-color: #ffb385; /* 네비/버튼 밝은 오렌지 */
   color: #7a4e2d; /* 텍스트 브라운 계열 */
@@ -42,14 +54,10 @@
   font-weight: 800;
   font-size: larger;
 }
-
-/* 네브바 이미지 */
-.logo-img{
-  width: 60px; 
+.logo-img {
+  width: 60px;
   height: auto;
 }
-
-/* 사이드바 */
 .navSideBar {
   width: 60px;
   background: #f6e7cb; /* 서브 배경 밝은 샌드 */
@@ -83,11 +91,12 @@
   color: #7a4e2d;
 }
 
-/*달력 안 박스*/
+/* MAIN CONTAINER */
 .container {
   width: 80vw;
   height: 80vh;
   margin-top: 2vh;
+  margin-left: 80px; /* 사이드바 너비만큼 공간 확보 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,7 +109,13 @@
   border: 1px solid #e2cfcf; /* 서브 포인트 연한 로즈 */
 }
 
-/*달력 헤더(제목+버튼)*/
+/* CALENDAR STYLES */
+#calendar-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 .calendar-header {
   display: flex;
   align-items: center;
@@ -108,8 +123,6 @@
   margin-bottom: 15px;
   width: 100%;
 }
-
-/* 달력 제목(년/월) */
 #monthYear {
   text-align: center;
   font-weight: 700;
@@ -118,8 +131,6 @@
   flex-grow: 1;
   margin: 0;
 }
-
-/*네비 버튼*/
 .nav-btn {
   background: #3eb489;
   color: white;
@@ -143,8 +154,6 @@
 .nav-btn:active {
   transform: scale(0.95);
 }
-
-/* 달력 전체 */
 #calendar {
   border-collapse: collapse;
   width: 100%;
@@ -156,8 +165,6 @@
   font-family: "NanumSquareRound", "Dooneun", "Sweet", "Segoe UI", Tahoma,
     Verdana, sans-serif;
 }
-
-/* 달력 헤더(요일) */
 #calendar thead th {
   background-color: #3eb489; /* 연민트색 */
   color: #fff; /* 텍스트 브라운 계열 */
@@ -169,8 +176,6 @@
   width: 14.28%;
   text-align: center;
 }
-
-/* 달력 날짜 셀 */
 #calendar tbody td {
   text-align: center;
   padding: 8px 4px;
@@ -185,15 +190,11 @@
   border-right: 1px solid #f7cac9;
   width: 14.28%; /* 7개 열이 균등하게 */
 }
-
-/* 날짜에 마우스 올리면 하이라이트 */
 #calendar tbody td:hover {
   background-color: #c4f0dc; /* 연민트 연한 톤 */
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(122, 78, 45, 0.2);
 }
-
-/* 오늘 날짜 강조 */
 #calendar tbody td.today {
   background-color: #ffecb3;
   font-weight: bold;
@@ -203,16 +204,27 @@
   transform: scale(1.1);
   border: 2px solid #f7cac9; /* 서브 포인트 따뜻한 핑크 테두리 */
 }
-
-/* 주말 색상 구분 */
 #calendar tbody td:first-child {
-  color: #d2691e; /* 일요일 - 따뜻한 오렌지 톤 */
+  color: #d2691e;
 }
 #calendar tbody td:last-child {
-  color: #8b4513; /* 토요일 - 깊은 브라운 톤 */
+  color: #8b4513;
+}
+.has-diary {
+  background-color: #e8f5e8 !important;
+  border: 2px solid #4caf50 !important;
+  font-weight: bold;
+  position: relative;
+}
+.has-diary::after {
+  content: "📝";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 20px;
 }
 
-/* 모달 기본 숨김 */
+/* DIARY MODAL STYLES */
 .modal {
   position: absolute;
   top: 0;
@@ -225,8 +237,6 @@
   align-items: center;
   z-index: 3000;
 }
-
-/* 모달 내용 */
 .modal-content {
   background: #fff;
   width: 90%;
@@ -237,18 +247,14 @@
   flex-direction: column;
   gap: 10px;
 }
-
-/* 모달 제목 스타일 */
-.modal-content h3{
-  margin:0;
+.modal-content h3 {
+  margin: 0;
   color: #7a4e2d;
   font-weight: bold;
   text-align: center;
   border-bottom: 2px solid #f7cac9;
   padding-bottom: 10px;
 }
-
-/* 모달 텍스트에리어 */
 .modal-content textarea {
   width: 100%;
   height: 200px;
@@ -272,20 +278,11 @@
   cursor: not-allowed;
   border-color: #dee2e6;
 }
-
-/* 모달 버튼 영역 */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
-
-/* 숨김 클래스 */
-.hidden {
-  display: none !important;
-}
-
-/* 모달 버튼 공통 스타일 */
 .modal-actions button {
   padding: 10px 20px;
   border: none;
@@ -297,74 +294,141 @@
   transition: all 0.3s ease;
   min-width: 70px;
 }
-
-/* 수정 버튼 */
 #editDiary {
   background-color: #ffa726;
   color: white;
-  box-shadow: 0 2px 8px rgba(255, 167, 38, 0.3);
 }
-#editDiary:hover {
-  background-color: #ff9800;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 167, 38, 0.4);
-}
-
-/* 삭제 버튼 */
 #deleteDiary {
   background-color: #ef5350;
   color: white;
-  box-shadow: 0 2px 8px rgba(239, 83, 80, 0.3);
 }
-#deleteDiary:hover {
-  background-color: #e53935;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(239, 83, 80, 0.4);
-}
-
-/* 저장 버튼 */
 #saveDiary {
   background-color: #3eb489;
   color: white;
-  box-shadow: 0 2px 8px rgba(62, 180, 137, 0.3);
 }
-#saveDiary:hover {
-  background-color: #2a9d73;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(62, 180, 137, 0.4);
-}
-
-/* 닫기 버튼 */
 #closeModal {
   background-color: #9e9e9e;
   color: white;
-  box-shadow: 0 2px 8px rgba(158, 158, 158, 0.3);
-}
-#closeModal:hover {
-  background-color: #757575;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(158, 158, 158, 0.4);
 }
 
-/* 일기쓴 날의 아이콘 */
-.has-diary {
-  background-color: #e8f5e8 !important;
-  border: 2px solid #4CAF50 !important;
-  font-weight: bold;
-  position: relative;
+/* GALLERY STYLES */
+#gallery-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
-.has-diary::after {
-  content: '📝';
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  font-size: 20px;
+.gallery-btn {
+  cursor: pointer;
+  background: none;
+}
+.gallery-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.gallery-ol,
+.gallery-ul {
+  list-style: none;
+}
+.gallery-a {
+  color: inherit;
+}
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 15px;
+}
+.view-options {
+  display: flex;
+  align-items: center;
+}
+.view-options li:not(:last-child) {
+  margin-right: 1.2rem;
+}
+.view-options button {
+  padding: 2px;
+  border: 3px solid transparent;
+}
+.view-options .active button {
+  border-color: var(--darkgreen);
+}
+
+/* IMAGE LIST */
+.image-list {
+  margin-bottom: 3rem;
+  height: calc(100% - 50px); 
+  overflow-y: auto; 
+}
+.image-list li {
+  background: rgb(255, 227, 174);
+  color: var(--darkgreen);
+}
+.image-list li p:first-child {
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+.image-list li p:last-child {
+  margin-top: 0.5rem;
+}
+
+/* GRID VIEW */
+.grid-view {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(var(--minRangeValue), 1fr));
+}
+/* LIST VIEW*/
+.list-view li + li {
+  margin-top: 1.5rem;
+}
+.list-view figure {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+}
+
+/* display css */
+.d-none {
+  display: none;
+}
+.hidden {
+  display: none !important;
+}
+
+/* 검색창을 감싸는 컨테이너 */
+.search-wrapper {
+  position: relative; /* 아이콘을 배치할 기준점 */
+  display: flex;
+  align-items: center;
+}
+
+/* 검색창 input 스타일 */
+.search-wrapper input[type="search"] {
+  border: 1px solid #ddd;
+  border-radius: 20px; /* 둥근 모서리 */
+  height: 38px;
+  padding: 0 40px 0 15px; /* 오른쪽(아이콘 자리)과 왼쪽 여백 */
+  width: 250px; /* 검색창 너비 */
+}
+
+/* 돋보기 아이콘 스타일 */
+.search-wrapper .fa-magnifying-glass {
+  position: absolute; /* wrapper를 기준으로 자유롭게 위치 조정 */
+  right: 15px; /* 오른쪽에서 15px 떨어진 곳에 배치 */
+  top: 50%;
+  transform: translateY(-50%); /* 세로 중앙 정렬 */
+  color: #999;
 }
 
 /* 반응형 */
 @media (max-width: 768px) {
   .container {
     width: 90vw;
+    margin-left: 0;
   }
   #calendar thead th,
   #calendar tbody td {
@@ -386,6 +450,8 @@
     flex-direction: row;
     position: fixed;
     bottom: 0;
+    top: auto;
+    left: 0;
     justify-content: center;
     align-items: center;
     gap: 20px;
@@ -431,5 +497,10 @@
     padding: 6px 12px;
     font-size: 11px;
     min-width: 50px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .toolbar input[type="range"] {
+    display: none;
   }
 }
