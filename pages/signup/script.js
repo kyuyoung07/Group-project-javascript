@@ -51,17 +51,17 @@ document.querySelector("#joinMember").addEventListener("submit", e => {
   }
   const isConfirmPwValid = confirmPw();
 
-  //아이디 영어, 숫자, 특수문자 형식 검사
+  //아이디 영어, 숫자 형식 검사
   function regExpId(regExp) {
      if(!regExp.test(document.querySelector("#userId").value.trim())) {
-        document.querySelector(".errorMessage-id").textContent = "* 영어, 숫자, 특수문자 조합으로 작성해 주세요."
+        document.querySelector(".errorMessage-id").textContent = "* 영어, 숫자 조합으로 작성해 주세요."
         return false;
     } else {
           document.querySelector(".errorMessage-id").textContent = "";
           return true;
     }
   }
-  const regExpIdValid = regExpId(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9])[^\s]+$/);
+  const regExpIdValid = regExpId(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/);
 
 
   //핸드폰 번호 형식 검사
