@@ -3,7 +3,6 @@
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" href="../signup/assets/images/Logo2.png">
       <title>회원가입</title>
       <link
          rel="stylesheet"
@@ -14,7 +13,7 @@
    <body>
       <div class="pageWrapper">
          <div class="container formField">
-            <h2 class="formTitle">회원가입</h2>
+            <h1 class="formTitle">회원가입</h1>
             <form id="joinMember">
                <div class="mb-3">
                   <label for="userId" class="form-label">아이디</label>
@@ -41,13 +40,13 @@
                   <div class="errorMessage-email"></div>
                </div>
                <div class="mb-3">
-                  <label for="userTel" class="form-label">연락처 (하이픈(-)을 넣어주세요.)</label>
+                  <label for="userTel" class="form-label">연락처</label>
                   <input type="tel" class="form-control" id="userTel" />
                   <div class="errorMessage-tel"></div>
                </div>
                <div class="mb-3">
                   <label for="gender" class="form-label">성별</label>
-                     <select id="gender" class="form-select form-control" aria-label="Small select example">
+                     <select id="gender" class="form-select" aria-label="Small select example">
                         <option selected>성별을 선택하세요</option>
                         <option value="male">남성</option>
                         <option value="female">여성</option>
@@ -59,6 +58,7 @@
                      type="checkbox"
                      class="form-check-input"
                      id="check1"
+                     style="margin:0 10px"
                   />
                   <label class="form-check-label" for="check1">위의 내용을 확인하였습니다.</label>
                   <div class="errorMessage-check"></div>
