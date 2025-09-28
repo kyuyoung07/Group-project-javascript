@@ -469,6 +469,10 @@
 .image-list li p:last-child {
   margin-top: 0.5rem;
 }
+.container ol {
+  margin: 0;
+  padding: 0;
+}
 
 /* 그리드 뷰 */
 .grid-view {
@@ -500,7 +504,8 @@
 @media (max-width: 768px) {
   .container {
     width: 90vw;
-    margin-left: 0;
+    margin: 0 auto;   /* 좌우 가운데 정렬 */
+    max-width: 90%;   /* 화면 전체를 꽉 채우지 않고 여백 줌 */
   }
   #calendar thead th,
   #calendar tbody td {
@@ -541,6 +546,18 @@
     padding: 8px 15px;
     font-size: 12px;
     min-width: 60px;
+  }
+  .modal-content-with-image {
+    width: 95%;
+    max-height: 90vh;
+  }
+  .diary-image-display img {
+    width: 100px;
+    height: 100px;
+  }
+  .image-preview-item {
+    width: 80px;
+    height: 80px;
   }
 }
 @media (max-width: 480px) {
@@ -694,24 +711,6 @@
 .counter {
   font-size: 14px;
   color: #666;
-}
-
-/* 반응형 개선 */
-@media (max-width: 768px) {
-  .modal-content-with-image {
-    width: 95%;
-    max-height: 90vh;
-  }
-  
-  .diary-image-display img {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .image-preview-item {
-    width: 80px;
-    height: 80px;
-  }
 }
 
 /* 이미지 확대 모달 */
