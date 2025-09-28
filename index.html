@@ -1,14 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>홈페이지</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<html lang="ko">
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoMT</title>
+    <link rel="icon" href="assets/Imges/Logo2.png">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
     
-    <script src="main.js"></script>
+    
+
+    <nav class="nav-Item-All">
+        <div class="logo">
+            <a href="pages/main/index.html">
+                <img src="../../assets/Imges/Logo2.png" alt="LOGO" width="70px" />
+            </a>
+        </div>
+        <div class="lang-Change">
+            <div class="nav-Item">
+                <div class="log-In"><a href="pages/signin/signin.html">Log In</a></div>
+                <span>|</span>
+                <div class="sigh-Up"><a href="pages/signup/index.html">Sign Up</a></div>
+            </div>
+    </nav>
+
+    <main class="main-Item-All">
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+        <div class="ments">
+            <div class="main-Ment">나의 일상 파트너</div>
+            <div class="sub-Ment">SoSo Diary</div>
+            <div class="start-Btn">
+                <a href="pages/main/index.html">
+                    <button class="start-Btn-Style">GO Diary</button>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="foot-Item-All">
+        <div class="container">
+            <div class="footItem-first">
+                <div class="logo-Box">
+                    <img src="assets/Imges/Logo2.png" alt="..." class="img-fluid"
+                        style="max-height: 100px; width: auto" />
+                </div>
+
+                <div class="company-info">
+                    <div class="menu1 menu">
+                        <div>
+                            회사 정보
+                        </div>
+                        <a href="#">개요</a><a href="#">연혁</a><a href="#">비전</a><a href="#">팀 소개</a>
+                    </div>
+                    <div class="menu2 menu">
+                        <div>서비스</div>
+                        <a href="#">다이어리</a><a href="#">습관관리</a><a href="#">목표관리</a><a href="#">메모/노트</a>
+                    </div>
+                    <div class="menu3 menu">
+                        <div>고객지원</div>
+                        <a href="#">자주 묻는 질문</a><a href="#">문의하기</a><a href="#">이용약관</a><a href="#">개인정보처리방침</a>
+                    </div>
+                    <div class="menu4 menu">
+                        <div>채용정보</div>
+                        <a href="#">채용공고</a><a href="#">지원방법</a><a href="#">인재상</a>
+                    </div>
+                </div>
+
+                <div class="icons-box">
+                    <div class="icon-box">
+                        <i class="fa-brands fa-instagram icon"></i>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fa-brands fa-x-twitter icon"></i>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fa-brands fa-facebook icon"></i>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fa-brands fa-youtube icon"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="footItem-Second">
+                <div class="adr">
+                    <div>Addr. 대전광역시 서구 월평동 76, 402 | TEL. 010-4754-7393</div>
+                </div>
+                <div class="Email">
+                    <div>Email. rkdwnsdud2580@gmail.com</div>
+                    <div>© 2025 ToDo List</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/009860e372.js" crossorigin="anonymous"></script>
+
 </body>
+
 </html>
+<!-- 
+메모/노트 기능
+Todoist의 코멘트(Comment) 기능을 활용해 할 일마다 메모를 추가할 수 있습니다.
+
+캘린더 연동
+할 일의 due date(마감일) 필드를 사용해 캘린더 형태로 표시할 수 있습니다.
+
+습관 추적기
+반복(recurrence) 기능을 활용해 반복되는 할 일을 만들 수 있습니다.
+
+목표 관리
+할 일 완료 수, 프로젝트별 진행률 등 API로 통계 데이터를 받아 목표 달성률을 계산할 수 있습니다.
+
+카테고리/태그 기능
+프로젝트(Project)와 라벨(Label) 기능을 활용해 할 일을 분류/태그할 수 있습니다.
+
+동기부여 요소
+API로 할 일 완료 시점 등을 받아와서, 프론트엔드에서 칭찬 메시지, 뱃지 등 게임화 요소를 구현할 수 있습니다.
+
+파일 첨부/이미지 업로드
+v1 API에서는 파일 첨부가 제한적이지만, 코멘트에 파일을 첨부하는 기능이 일부 지원됩니다.
+
+공유/협업 기능
+프로젝트 공유, 할 일 할당 등 협업 기능이 API에서 지원됩니다 -->
+<!-- <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCp7zz0SzCQf8KfQfQAoz4NDRY1w7eX8Yg",
+    authDomain: "todomt-backend.firebaseapp.com",
+    projectId: "todomt-backend",
+    storageBucket: "todomt-backend.firebasestorage.app",
+    messagingSenderId: "90887492856",
+    appId: "1:90887492856:web:4fab0fe388748990fe570d"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script> -->
