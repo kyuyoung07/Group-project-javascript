@@ -1,17 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>메인 페이지</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
+    <link rel="icon" href="../../assets/logo.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="big-container">
+      <nav>
+        <div
+          class="d-flex align-items-center pt-4 nav-logo"
+        >
+          <a class="navbar-brand" href="#">
+            <img src="../../assets/logo.png" alt="Logo" class="logo-img" />
+          </a>
+          <i class="fa-solid fa-circle-user"></i>
+        </div>
+      </nav>
+      <div class="navSideBar">
+        <div
+          class="nav-icon active"
+          id="calendarBtn"
+          data-bs-toggle="tooltip"
+          title="달력"
+        >
+          <i class="fa-solid fa-calendar-days"></i>
+        </div>
+        <div
+          class="nav-icon"
+          id="diaryBtn"
+          data-bs-toggle="tooltip"
+          title="일기장"
+        >
+          <i class="fa-solid fa-book"></i>
+        </div>
+        <div
+          class="nav-icon"
+          id="galleryBtn"
+          data-bs-toggle="tooltip"
+          title="사진첩"
+        >
+          <i class="fa-solid fa-image"></i>
+        </div>
+        <div class="nav-icon" data-bs-toggle="tooltip" title="Q&A">
+          <i class="fa-solid fa-circle-question"></i>
+        </div>
+      </div>
 
-    <!--공통JS-------------------->
-    <script src="main.js"></script>
-    <!--페이지 전용 JS--------------->
+      <section class="main-content-section">
+        <div class="container">
+          <div id="calendar-content">
+            <div class="calendar-header">
+              <button id="prevBtn" class="nav-btn">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <h2 style="text-align: center" id="monthYear"></h2>
+              <button id="nextBtn" class="nav-btn">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+            <table id="calendar">
+              <thead>
+                <tr>
+                  <th>일</th>
+                  <th>월</th>
+                  <th>화</th>
+                  <th>수</th>
+                  <th>목</th>
+                  <th>금</th>
+                  <th>토</th>
+                </tr>
+              </thead>
+              <tbody id="calendar-body"></tbody>
+            </table>
+          </div>
+
+          <!-- 일기 리스트 섹션 -->
+          <div id="diary-content" class="hidden">
+            <div class="diary-header">
+              <h2 class="diary-title">내 일기 목록</h2>
+            </div>
+            <div class="diary-list-container" id="diary-list">
+              <!-- 일기 리스트가 여기에 동적으로 생성 -->
+            </div>
+          </div>
+
+          <div id="gallery-content" class="hidden">
+            <div class="toolbar">
+              <div class="toolbar-top">
+                <div class="search-wrapper">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <input type="search" placeholder="Search for photos" />
+                </div>
+              </div>
+              <div class="toolbar-bottom">
+                <div class="counter">Total photos: <span>12</span></div>
+                <ul class="view-options gallery-ul">
+                  <li class="zoom">
+                    <input type="range" min="180" max="380" value="280" />
+                  </li>
+                  <li class="show-grid active">
+                    <button class="gallery-btn">
+                      <img
+                        class="gallery-img"
+                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/grid-view.svg"
+                        alt="grid view"
+                      />
+                    </button>
+                  </li>
+                  <li class="show-list">
+                    <button class="gallery-btn">
+                      <img
+                        class="gallery-img"
+                        src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/list-view.svg"
+                        alt="list view"
+                      />
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <ol class="image-list grid-view gallery-ol">
+            </ol>
+          </div>
+
+          <div id="diaryModal" class="modal">
+            <div class="modal-content">
+              <h3 id="modalTitle">오늘의 일기</h3>
+              <textarea
+                id="diaryText"
+                placeholder="오늘 하루를 기록해보세요..."
+              ></textarea>
+              <div class="image-upload-section">
+                <input type="file" id="imageUpload" accept="image/*" class="hidden" />
+                <button id="addImageBtn" class="hidden">이미지 추가</button>
+                <div id="imagePreview" class="image-preview"></div>
+              </div>
+              <div class="modal-actions">
+                <button id="editDiary" class="hidden">수정</button>
+                <button id="deleteDiary" class="hidden">삭제</button>
+                <button id="saveDiary" class="hidden">저장</button>
+                <button id="closeModal">닫기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
