@@ -261,10 +261,10 @@ body {
 		gap: 15px;
 	}
 	.wave {
-		width: 500px;
-		height: 500px;
-		margin-left: -250px;
-		margin-top: -225px;
+		width: 600px;
+		height: 600px;
+		margin-left: -310px;
+		margin-top: -250px;
 	}
 	.foot-Item-All {
 		min-height: auto; /* 모바일에서는 높이 제한 없음 */
@@ -292,10 +292,10 @@ body {
 /* 모바일 */
 @media screen and (max-width: 768px) {
 	.main-Ment {
-		font-size: 2em;
+		font-size: 1.8em;
 	}
 	.sub-Ment {
-		font-size: 4em;
+		font-size: 3.5em;
 	}
 	.start-Btn-Style {
 		font-size: 20px;
@@ -335,6 +335,12 @@ body {
 		margin: 0 5px;
 	}
 
+	.wave {
+		width: 550px;
+		height: 550px;
+		margin-left: -250px;
+		margin-top: -225px;
+	}
 	.icons-box {
 		justify-content: center;
 		width: 100%;
@@ -372,6 +378,12 @@ body {
 		justify-content: center;
 		width: 100%;
 		margin-top: 20px;
+	}
+	.main-Ment {
+		font-size: 1.8em;
+	}
+	.sub-Ment {
+		font-size: 3em;
 	}
 }
 /* 작은 모바일 */
