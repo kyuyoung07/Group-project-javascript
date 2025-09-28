@@ -1,188 +1,390 @@
-/* Import Local CSS */
-@import url('reset.css');
-@import url('variables.css');
-
 * {
-  font-family: var(--primary-kr);
-  font-weight: bold;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
+html,
 body {
-  background-color: var(--main-bg);
-  margin: 0;
-  color: var(--brown);
-  line-height: 1.5em;
-  font-size: 16px;
+	height: 100%;
+}
+@font-face {
+	font-family: 'Dooneun';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Donoun-Medium.woff2') format('woff2');
+	font-weight: normal;
+	font-display: swap;
+}
+/* ===============================================네비게이션바=============================================== */
+.nav-Item-All {
+	font-family: 'Dooneun';
+	display: flex;
+	justify-content: space-between;
+	height: 68px;
+	background-color: #ffb385;
+	align-items: center;
+	max-width: 100%;
+	color: #7a4e2d;
+}
+.logo {
+	margin-left: 25px;
+	/* display: flex; */
+}
+.nav-Item {
+	display: flex;
+	margin-right: 25px;
 }
 
-/* #### Common CSS #### */
+.log-In {
+	margin-right: 10px;
+}
+.log-In a {
+	text-decoration: none;
+	font-weight: 700;
+}
+.sigh-Up {
+	margin-left: 10px;
+}
+.sigh-Up a {
+	text-decoration: none;
+	font-weight: 700;
+}
 
-/* Layout CSS */
+/* a태그 기본 */
+.nav-Item a,
+.log-In a,
+.sigh-Up a {
+	color: #7a4e2d;
+	text-decoration: none;
+	transition: font-size 0.5s ease;
+}
+
+/* a태그 호버 */
+.nav-Item a:hover,
+.log-In a:hover,
+.sigh-Up a:hover {
+	color: #fff2e0; /* 웜 레드 오렌지 */
+	font-size: 1.2em;
+	text-align: center;
+}
+
+/* ===============================================웨이브=============================================== */
+.wave {
+	opacity: 0.3;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: #ffb385;
+	width: 700px;
+	height: 700px;
+	margin-left: -350px;
+	margin-top: -310px;
+	transform-origin: 50% 48%;
+	border-radius: 43%;
+	animation: drift 3000ms infinite linear;
+	z-index: 1;
+}
+.wave.-three {
+	animation: drift 5000ms infinite linear;
+}
+.wave.-two {
+	animation: drift 7000ms infinite linear;
+	opacity: 0.1;
+	background: #ff885d;
+}
+@keyframes drift {
+	from {
+		transform: rotate(0deg);
+	}
+	from {
+		transform: rotate(360deg);
+	}
+}
+/* ===============================================메인=============================================== */
+.main-Item-All {
+	background-color: #fff2e0;
+	height: calc(100% - 68px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	color: #7a4e2d;
+	font-family: 'Dooneun';
+}
+.ments {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+}
+.main-Ment {
+	font-size: 3em;
+	z-index: 2;
+	margin: 10px 0;
+}
+.sub-Ment {
+	font-size: 7em;
+	z-index: 2;
+	margin: 10px 0;
+}
+.start-Btn {
+	z-index: 2;
+	margin: 10px 0;
+}
+.start-Btn-Style {
+	border: none;
+	background-color: #ff7f50;
+	font-size: 30px;
+	cursor: pointer;
+	width: 180px;
+	height: 50px;
+	border-radius: 25px;
+	color: #fff2e0;
+	font-family: 'Dooneun';
+}
+.start-Btn-Style:hover {
+	background-color: #e76f51;
+}
+/* ===============================================하단푸터=============================================== */
+.foot-Item-All {
+	font-family: 'Dooneun';
+	min-height: 468px;
+	background-color: #ffb385;
+	color: #7a4e2d;
+	display: flex;
+	justify-content: center;
+}
 .container {
-  width: 100%;
-  display: flex;
-  justify-content: center; 
-  align-items:center;
-  height: 100vh;
+	max-width: 1170px;
+	width: 100%;
+	padding-top: 80px;
+	padding-bottom: 50px;
 }
-.signin{
-  width: 35%;
-  padding: 30px;
-  /* border:1px solid #eee;
-  border-radius: 5px;
-  box-shadow: 0 0 25px rgba(252, 247, 233, 0.5); */
-  box-sizing: border-box;
-  
+.footItem-first {
+	display: flex;
+	justify-content: space-between;
+	height: 324px;
 }
-/* .signin-photo {
-  height: 150px;
-  background: url('/images/background.jpg') no-repeat ;
-  background-position: center center;
-  margin-bottom: 20px;
-  } */
-.sign-header {
-  text-align: center;
+.logo-Box {
+	width: 20%;
+	display: flex;
+	justify-content: center;
 }
-.sign-header .logo {
-  font-family: var( --primary-kr);
-  color:var(--tpoint);
-  font-size: 48px;
-  font-weight: bold;
+.company-info {
+	width: 55%;
+	display: flex;
+	justify-content: space-around;
 }
-.sign-header p {
-  font-size: 18px;
-  font-weight: bold;
-  color:var(--brown);
-  
+.menu {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
 }
-.signin-field input {
-  border: 1px solid var(--point);
-  padding: 20px 20px;
-  width: 100%;
-  border-radius: 15px;
-  margin: 5px 0;
-  transition: .3s;
+.menu div {
+	font-weight: 800;
+	font-size: 1.8em;
 }
-.signin-field input:hover{
-  box-shadow: 0 0 0 1px var(--sub-bg2);
+.menu a {
+	text-decoration: none;
+	color: #7a4e2d;
+	font-size: 20px;
+	padding: 4px 0;
 }
-.signin-field input:focus {
-  background: var(--gloudy-gray);
+.menu a:hover {
+	color: #fff2e0;
 }
-.signin-field input::placeholder {
-  color: var(--silver-gray);
-  transition: 0.35s;
+.icons-box {
+	display: flex;
+	justify-content: end;
+	width: 25%;
 }
-.signin-field input:focus::placeholder {
-  opacity: 0;
+.icon-box {
+	background-color: #ff7f50;
+	color: #ffb385;
+	min-width: 50px;
+	min-height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	cursor: pointer;
+	margin-left: 15px;
+	width: 50px;
+	height: 50px;
 }
-
-.status {
-  margin: 15px 0;
-  display: flex;
-  justify-content: space-between;
+.icon {
+	font-size: 1.5em;
 }
-.custom-chk label input[type=checkbox] {
-  display: none;
-
+.icon:hover {
+	color: #fff2e0;
 }
-.custom-chk label input[type=checkbox]  + em {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  transform: translateY(5px);
-  margin-right: 3px;
-  cursor: pointer;
+.footItem-Second {
+	border-top: 1px solid #7a4e2d;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 64px;
 }
-.custom-chk label input[type=checkbox] + em:before {
-  content: '\F26B';
-  font-family: bootstrap-icons;
-  font-style: normal;
-  color: var(--light-gray);
-  transform: translateY(-3px);
-  display: inline-block;
-}
-.custom-chk label input[type=checkbox]:checked + em:before {
-  color: var(--point);
-}
-/* Button CSS */
-.btn-signin {
-  cursor: pointer;
-   font-size: 20px;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  width: 100%;
-  padding: 20px;
-  background-color: var(--nav-button);
-}
-.btn-signin:hover{
-  background: var(--point);
-  transition:.3s;
-  
-}
-.custom-chk a:hover{
-  text-decoration: underline;
-}
-.join-member {
-  text-align: center;
-  margin: 15px 0;
-}
-.join-member a {
-  text-decoration: underline;
-}
-.join-member a:hover {
-  color: var(--point);
+.Email {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: end;
+	height: 100%;
 }
 
+@media screen and (max-width: 1024px) {
+	.main-Ment {
+		font-size: 2.5em;
+	}
+	.sub-Ment {
+		font-size: 5.5em;
+	}
+	.start-Btn-Style {
+		font-size: 25px;
+		width: 150px;
+		height: 45px;
+	}
+	.icons-box {
+		margin-bottom: 15px;
+	}
+	.footItem-first {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		height: auto;
+		gap: 20px;
+	}
+	.company-info {
+		text-align: center;
+		flex-wrap: wrap;
+		gap: 15px;
+	}
+	.wave {
+		width: 500px;
+		height: 500px;
+		margin-left: -250px;
+		margin-top: -225px;
+	}
+	.foot-Item-All {
+		min-height: auto; /* 모바일에서는 높이 제한 없음 */
+		padding: 40px 20px; /* 상하 패딩으로 여백 확보 */
+	}
 
-.easy-signin {
-  text-align: center;
-}
-.easy-signin span {
-  color: var(--light-gray);
-}
-.social-btn {
-  margin: 10px 0;
-}
-.social-btn a {
-  margin: 2px;
+	.container {
+		padding-top: 20px; /* 패딩 줄이기 */
+		padding-bottom: 20px;
+	}
+	.menu {
+		margin-bottom: 15px; /* 각 메뉴 간격 줄이기 */
+	}
+	.menu div {
+		font-size: 1.5em; /* 제목 크기 줄이기 */
+		margin-bottom: 8px;
+	}
+
+	.menu a {
+		font-size: 16px; /* 링크 크기 줄이기 */
+		padding: 2px 0;
+	}
 }
 
+/* 모바일 */
+@media screen and (max-width: 768px) {
+	.main-Ment {
+		font-size: 2em;
+	}
+	.sub-Ment {
+		font-size: 4em;
+	}
+	.start-Btn-Style {
+		font-size: 20px;
+		width: 140px;
+		height: 40px;
+	}
+	.icon-box {
+		width: 40px;
+		height: 40px;
+		min-width: 40px;
+		min-height: 40px;
+		margin-left: 10px;
+	}
+	.icon {
+		font-size: 1.2em;
+	}
+	.company-info {
+		flex-direction: column; /* 세로 배치 */
+		align-items: center;
+		gap: 10px;
+	}
 
-/* For Big Size Mobile & Tablet Device */
- @media all and (min-width:480px) and (max-width:767px){
-  .signin{
-  width: 60%;
+	.menu {
+		margin-bottom: 10px;
+		width: 100%;
+	}
 
-  padding: 50px;
- 
-}
- .sign-header .logo {
- font-size: 48px;
-}
+	.menu div {
+		font-size: 1.3em;
+		margin-bottom: 5px;
+	}
 
-.sign-header p {
- display: none;
-}
- }
- @media all and (max-width:479px){
-.signin{
-  width: 100%;
-  padding: 10px;
-}
-.sign-header .logo {
- font-size: 36px;
- margin-top: 30px;
-}
+	.menu a {
+		font-size: 14px;
+		padding: 1px 0;
+		display: inline-block;
+		margin: 0 5px;
+	}
 
-.sign-header p {
- display: none;
-}
-.btn-signin{
-  padding: 12px;
-}
+	.icons-box {
+		justify-content: center;
+		width: 100%;
+		margin-bottom: 20px;
+		gap: 10px;
+	}
 
-.signin-field input {
-  padding:15px 20px;
+	.footItem-Second {
+		flex-direction: column;
+		text-align: center;
+		height: auto;
+		gap: 10px;
+	}
+	.main-Item-All {
+		min-height: calc(100vh - 68px); /* 최소 높이만 보장 */
+		height: auto; /* 높이 자동 조정 */
+	}
+	.wave {
+		width: 300px;
+		height: 300px;
+		margin-left: -150px;
+		margin-top: -125px;
+	}
+	.adr {
+		margin-top: 10px;
+	}
+	.Email {
+		display: flex;
+		justify-content: end;
+		width: 100%;
+	}
 }
- }
+@media screen and (max-width: 600px) {
+	.icons-box {
+		justify-content: center;
+		width: 100%;
+		margin-top: 20px;
+	}
+}
+/* 작은 모바일 */
+@media screen and (max-width: 480px) {
+	.main-Ment {
+		font-size: 1.5em;
+	}
+	.sub-Ment {
+		font-size: 3em;
+	}
+	.start-Btn-Style {
+		font-size: 18px;
+		width: 120px;
+		height: 38px;
+	}
+}
