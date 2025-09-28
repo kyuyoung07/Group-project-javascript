@@ -45,7 +45,7 @@
   background-color: #ffe5b4; /* 메인 배경 따뜻한 살구 */
 }
 
-/* NAVBAR & SIDEBAR */
+/* 네브바&사이드네브바 */
 .nav-logo {
   background-color: #ffb385; /* 네비/버튼 밝은 오렌지 */
   color: #7a4e2d; /* 텍스트 브라운 계열 */
@@ -53,6 +53,8 @@
   height: 4em;
   font-weight: 800;
   font-size: larger;
+  justify-content: space-between;
+  padding: 20px 20px;
 }
 .logo-img {
   width: 60px;
@@ -91,12 +93,11 @@
   color: #7a4e2d;
 }
 
-/* MAIN CONTAINER */
+/* 메인 틀 */
 .container {
   width: 80vw;
   height: 80vh;
   margin-top: 2vh;
-  margin-left: 80px; /* 사이드바 너비만큼 공간 확보 */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,7 +110,7 @@
   border: 1px solid #e2cfcf; /* 서브 포인트 연한 로즈 */
 }
 
-/* CALENDAR STYLES */
+/* 달력 부분 */
 #calendar-content {
   width: 100%;
   height: 100%;
@@ -224,14 +225,13 @@
   font-size: 20px;
 }
 
-/* DIARY LIST STYLES */
+/* 일기 리스트 부분 */
 #diary-content {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-
 .diary-header {
   display: flex;
   align-items: center;
@@ -239,7 +239,6 @@
   margin-bottom: 20px;
   width: 100%;
 }
-
 .diary-title {
   font-size: 2rem;
   font-weight: 700;
@@ -250,14 +249,12 @@
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
-
 .diary-list-container {
   width: 100%;
   height: calc(100% - 60px);
   overflow-y: auto;
   padding: 10px;
 }
-
 .diary-item {
   background: #fff;
   border-radius: 12px;
@@ -268,13 +265,11 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .diary-item:hover {
   box-shadow: 0 4px 12px rgba(122, 78, 45, 0.2);
   transform: translateY(-2px);
   border-color: #f7cac9;
 }
-
 .diary-item-date {
   font-size: 1.1rem;
   font-weight: 600;
@@ -283,13 +278,11 @@
   border-bottom: 1px solid #f7cac9;
   padding-bottom: 5px;
 }
-
 .diary-item-preview {
   color: #666;
   line-height: 1.5;
   font-size: 0.95rem;
 }
-
 .no-diary-message {
   text-align: center;
   color: #7a4e2d;
@@ -297,7 +290,7 @@
   margin-top: 50px;
 }
 
-/* DIARY MODAL STYLES */
+/* 일기 모달 부분 */
 .modal {
   position: absolute;
   top: 0;
@@ -384,7 +377,7 @@
   color: white;
 }
 
-/* GALLERY STYLES */
+/* 갤러리 부분 */
 #gallery-content {
   width: 100%;
   height: 100%;
@@ -408,7 +401,7 @@
   color: inherit;
 }
 
-/* UPDATED GALLERY TOOLBAR */
+/* 업로드 갤러리 툴바 부분 */
 .toolbar {
   margin-bottom: 25px;
 }
@@ -456,7 +449,7 @@
   border-color: var(--darkgreen);
 }
 
-/* IMAGE LIST */
+/* 이미지 리스트 부분 */
 .image-list {
   margin-bottom: 3rem;
   height: calc(100% - 50px); 
@@ -474,14 +467,14 @@
   margin-top: 0.5rem;
 }
 
-/* GRID VIEW */
+/* 그리드 뷰 */
 .grid-view {
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(var(--minRangeValue), 1fr));
 }
 
-/* LIST VIEW*/
+/* 리스트 뷰*/
 .list-view li + li {
   margin-top: 1.5rem;
 }
