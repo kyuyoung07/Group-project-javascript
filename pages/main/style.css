@@ -573,3 +573,177 @@
     display: none;
   }
 }
+
+/* 사진 업로드용 css */
+/* 기존 CSS 유지하고 추가 스타일 */
+
+/* IMAGE UPLOAD SECTION */
+.image-upload-section {
+  margin: 10px 0;
+}
+
+#addImageBtn {
+  background-color: #ffa726;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: "NanumSquareRound", "Dooneun", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+#addImageBtn:hover {
+  background-color: #ff9800;
+}
+
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.image-preview-item {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #e0e0e0;
+}
+
+.image-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-preview-remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: rgba(239, 83, 80, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-preview-remove:hover {
+  background: rgba(239, 83, 80, 1);
+}
+
+/* MODAL WITH IMAGES */
+.modal-content-with-image {
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.diary-image-display {
+  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.diary-image-display img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.diary-image-display img:hover {
+  transform: scale(1.05);
+}
+
+/* GALLERY UPDATES */
+.gallery-item {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-item figure {
+  margin: 0;
+}
+
+.gallery-item figcaption p {
+  margin: 0.5rem 0;
+  padding: 0 0.5rem;
+}
+
+.gallery-item figcaption p:first-child {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+.gallery-item figcaption p:last-child {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: normal;
+}
+
+/* 갤러리 카운터 업데이트 */
+.counter {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 반응형 개선 */
+@media (max-width: 768px) {
+  .modal-content-with-image {
+    width: 95%;
+    max-height: 90vh;
+  }
+  
+  .diary-image-display img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .image-preview-item {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* 이미지 확대 모달 */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 4000;
+  cursor: pointer;
+}
+
+.image-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+}

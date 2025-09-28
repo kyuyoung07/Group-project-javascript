@@ -395,6 +395,11 @@
                 id="diaryText"
                 placeholder="오늘 하루를 기록해보세요..."
               ></textarea>
+              <div class="image-upload-section">
+                <input type="file" id="imageUpload" accept="image/*" class="hidden" />
+                <button id="addImageBtn" class="hidden">이미지 추가</button>
+                <div id="imagePreview" class="image-preview"></div>
+              </div>
               <div class="modal-actions">
                 <button id="editDiary" class="hidden">수정</button>
                 <button id="deleteDiary" class="hidden">삭제</button>
