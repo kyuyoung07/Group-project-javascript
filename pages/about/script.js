@@ -84,13 +84,14 @@ function showPostDetail(postId) {
         <span>글쓴이: 누군가</span>
         <span>작성 시간: ${getCalculateTime(selectedPost.date)}</span>
       </div>
-      <div class="detail-box">내용 : ${selectedPost.detail}</div>
+      <div class="detail-box">내용 : ${selectedPost.detail}
       <div class="post-buttons">
-        <button onclick="editPost(${selectedPost.id})" class="btn btn-warning btn-sm">수정</button>
-        <button onclick="deletePost(${selectedPost.id})" class="btn btn-danger btn-sm">삭제</button>
-      </div>
+        <button onclick="editPost(${selectedPost.id})" class="btn-modify">수정</button>
+        <button onclick="deletePost(${selectedPost.id})" class="btn-delete">삭제</button>
+      </div></div>
+      
       <div class="answerBox"></div>
-      <div>
+      <div class='answer-btn-Input'>
         <input type="text" placeholder="답변달기" class='answerInput'/>
         <button type="submit" class='answerBtn'>답변</button>
       </div>
@@ -132,8 +133,8 @@ function displayAnswers(postId) {
     <div class="answer-content">${answer.content}</div>
     <div class="answer-time">답글 작성: ${getCalculateTime(answer.date)}</div>
     <div class="answer-buttons">
-      <button onclick="editAnswer(${answer.id}, ${postId})" class="btn btn-sm btn-outline-warning">수정</button>
-      <button onclick="deleteAnswer(${answer.id}, ${postId})" class="btn btn-sm btn-outline-danger">삭제</button>
+      <button onclick="editAnswer(${answer.id}, ${postId})" class="btn-modify">수정</button>
+      <button onclick="deleteAnswer(${answer.id}, ${postId})" class="btn-delete">삭제</button>
     </div>
   </div>`;
   });

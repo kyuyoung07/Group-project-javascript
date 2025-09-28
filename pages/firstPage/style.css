@@ -1,0 +1,249 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html,
+body {
+	height: 100%;
+}
+@font-face {
+	font-family: 'Dooneun';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Donoun-Medium.woff2') format('woff2');
+	font-weight: normal;
+	font-display: swap;
+}
+/* ===============================================네비게이션바=============================================== */
+.nav-Item-All {
+	font-family: 'Dooneun';
+	display: flex;
+	justify-content: space-between;
+	height: 68px;
+	background-color: #ffb385;
+	align-items: center;
+	max-width: 100%;
+	color: #7a4e2d;
+}
+.logo {
+	margin-left: 25px;
+	/* display: flex; */
+
+}
+.nav-Item {
+	display: flex;
+	margin-right: 25px;
+}
+
+.log-In {
+	margin-right: 10px;
+}
+.log-In a {
+	text-decoration: none;
+	font-weight: 700;
+}
+.sigh-Up {
+	margin-left: 10px;
+}
+.sigh-Up a {
+	text-decoration: none;
+	font-weight: 700;
+}
+
+/* a태그 기본 */
+.nav-Item a,
+.log-In a,
+.sigh-Up a {
+	color: #7a4e2d;
+	text-decoration: none;
+	transition: font-size 0.5s ease;
+}
+
+/* a태그 호버 */
+.nav-Item a:hover,
+.log-In a:hover,
+.sigh-Up a:hover {
+	color: #fff2e0; /* 웜 레드 오렌지 */
+	font-size: 1.2em;
+	text-align: center;
+}
+
+/* ===============================================웨이브=============================================== */
+.wave {
+	opacity: 0.3;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: #ffb385;
+	width: 700px;
+	height: 700px;
+	margin-left: -350px;
+	margin-top: -310px;
+	transform-origin: 50% 48%;
+	border-radius: 43%;
+	animation: drift 3000ms infinite linear;
+	z-index: 1;
+}
+.wave.-three {
+	animation: drift 5000ms infinite linear;
+}
+.wave.-two {
+	animation: drift 7000ms infinite linear;
+	opacity: 0.1;
+	background: #ff885d;
+}
+@keyframes drift {
+	from {
+		transform: rotate(0deg);
+	}
+	from {
+		transform: rotate(360deg);
+	}
+}
+/* ===============================================메인=============================================== */
+.main-Item-All {
+	background-color: #fff2e0;
+	height: calc(100% - 68px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	color: #7a4e2d;
+	font-family: 'Dooneun';
+}
+.ments {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+}
+.main-Ment {
+	font-size: 3em;
+	z-index: 2;
+	margin: 10px 0;
+}
+.sub-Ment {
+	font-size: 7em;
+	z-index: 2;
+	margin: 10px 0;
+}
+.start-Btn {
+	z-index: 2;
+	margin: 10px 0;
+}
+.start-Btn-Style {
+	border: none;
+	background-color: #ff7f50;
+	font-size: 30px;
+	cursor: pointer;
+	width: 180px;
+	height: 50px;
+	border-radius: 25px;
+	color: #fff2e0;
+	font-family: 'Dooneun';
+}
+.start-Btn-Style:hover {
+	background-color: #e76f51;
+}
+/* ===============================================하단푸터=============================================== */
+.foot-Item-All {
+	font-family: 'Dooneun';
+	height: 468px;
+	background-color: #ffb385;
+	color: #7a4e2d;
+	display: flex;
+	justify-content: center;
+}
+.container {
+	max-width: 1170px;
+	width: 100%;
+	padding-top: 80px;
+	padding-bottom: 50px;
+}
+.footItem-first {
+	display: flex;
+	justify-content: space-between;
+	height: 324px;
+}
+.logo-Box {
+	width: 20%;
+	display: flex;
+	justify-content: center;
+}
+.company-info {
+	width: 55%;
+	display: flex;
+	justify-content: space-around;
+}
+.menu {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+.menu div {
+	font-weight: 800;
+	font-size: 1.8em;
+}
+.menu a {
+	text-decoration: none;
+	color: #7a4e2d;
+	font-size: 20px;
+	padding: 4px 0;
+}
+.menu a:hover {
+	color: #fff2e0;
+}
+.icons-box {
+	display: flex;
+	justify-content: end;
+	width: 25%;
+}
+.icon-box {
+	background-color: #ff7f50;
+	color: #ffb385;
+	width: 50px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	cursor: pointer;
+	margin-left: 15px;
+}
+.icon {
+	font-size: 1.5em;
+}
+.icon:hover {
+	color: #fff2e0;
+}
+.footItem-Second {
+	border-top: 1px solid #7a4e2d;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 64px;
+}
+.Email {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: end;
+	height: 100%;
+}
+@media screen and (max-width: 1000px) {
+	.footItem-first {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+	.company-info {
+		text-align: center;
+	}
+	.wave {
+		width: 500px;
+		height: 500px;
+		margin-left: -250px;
+		margin-top: -225px;
+	}
+}
