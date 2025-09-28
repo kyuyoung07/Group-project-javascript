@@ -292,11 +292,11 @@
 
 /* 일기 모달 부분 */
 .modal {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.4);
   display: none;
   justify-content: center;
@@ -307,11 +307,13 @@
   background: #fff;
   width: 90%;
   max-width: 500px;
+  max-height: 85vh;
   padding: 20px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  overflow-y: auto; /* 스크롤 가능하게 */
 }
 .modal-content h3 {
   margin: 0;
@@ -348,6 +350,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+  flex-wrap: wrap; /* 반응형을 위해 추가 */
 }
 .modal-actions button {
   padding: 10px 20px;
@@ -581,7 +584,6 @@
 .image-upload-section {
   margin: 10px 0;
 }
-
 #addImageBtn {
   background-color: #ffa726;
   color: white;
@@ -595,18 +597,15 @@
   transition: all 0.3s ease;
   margin-bottom: 10px;
 }
-
 #addImageBtn:hover {
   background-color: #ff9800;
 }
-
 .image-preview {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
 }
-
 .image-preview-item {
   position: relative;
   width: 100px;
@@ -615,13 +614,11 @@
   overflow: hidden;
   border: 2px solid #e0e0e0;
 }
-
 .image-preview-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .image-preview-remove {
   position: absolute;
   top: 2px;
@@ -638,25 +635,21 @@
   align-items: center;
   justify-content: center;
 }
-
 .image-preview-remove:hover {
   background: rgba(239, 83, 80, 1);
 }
-
 /* MODAL WITH IMAGES */
 .modal-content-with-image {
   max-width: 600px;
   max-height: 80vh;
   overflow-y: auto;
 }
-
 .diary-image-display {
   margin: 10px 0;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
-
 .diary-image-display img {
   width: 150px;
   height: 150px;
@@ -665,7 +658,6 @@
   cursor: pointer;
   transition: transform 0.3s ease;
 }
-
 .diary-image-display img:hover {
   transform: scale(1.05);
 }
@@ -675,28 +667,23 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .gallery-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
 .gallery-item figure {
   margin: 0;
 }
-
 .gallery-item figcaption p {
   margin: 0.5rem 0;
   padding: 0 0.5rem;
 }
-
 .gallery-item figcaption p:first-child {
   font-weight: bold;
   font-size: 1rem;
   color: #333;
   line-height: 1.4;
 }
-
 .gallery-item figcaption p:last-child {
   font-size: 0.9rem;
   color: #666;
