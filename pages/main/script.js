@@ -209,27 +209,55 @@ const renderDiaryList = () => {
   diaryListContainer.innerHTML = html;
 };
 
-//사진첩 렌더링 함수
+//사진첩 렌더링 함수 (디버깅 강화)
 const renderGallery = () => {
-  const galleryContainer = document.getElementById("gallery-list");
+  console.log("renderGallery() called");
+  
+  const galleryContainer = document.querySelector(".image-list");
+  if (!galleryContainer) {
+    console.error("Gallery container (.image-list) not found!");
+    return;
+  }
+  
+  console.log("Gallery container found:", galleryContainer);
+
   const diariesWithImages = getDiariesWithImages();
   const entries = Object.entries(diariesWithImages);
+  
+  console.log("Entries with images:", entries.length);
+  entries.forEach(([key, diary]) => {
+    console.log(`- ${key}: ${diary.images ? diary.images.length : 0} images`);
+  });
 
   const totalImages = entries.reduce(
     (total, [, diary]) => total + diary.images.length,
     0
   );
-  document.querySelector(".counter span").textContent = totalImages;
+  
+  console.log("Total images:", totalImages);
+  
+  const counterElement = document.querySelector(".counter span");
+  if (counterElement) {
+    counterElement.textContent = totalImages;
+    console.log("Counter updated to:", totalImages);
+  } else {
+    console.warn("Counter element not found");
+  }
+
+  // 모든 내용을 지우고 새로 시작
+  galleryContainer.innerHTML = "";
+  console.log("Gallery container cleared");
 
   if (entries.length === 0) {
     galleryContainer.innerHTML =
       '<li><div style="text-align: center; color: #666; padding: 50px;">이미지가 있는 일기가 없습니다.</div></li>';
+    console.log("No images found, showing empty message");
     return;
   }
 
   entries.sort((a, b) => new Date(b[0]) - new Date(a[0]));
 
-  let html = "";
+  let itemCount = 0;
   entries.forEach(([dateKey, diary]) => {
     if (diary.images && diary.images.length > 0) {
       const [year, month, day] = dateKey.split("-");
@@ -240,25 +268,35 @@ const renderGallery = () => {
           ? content.substring(0, 20) + "..."
           : content || "내용 없음";
 
-      diary.images.forEach((image) => {
-        html += `
-                <li class="gallery-item" onclick="openDiaryModal('${dateKey}')">
-                  <figure>
-                    <img class="gallery-img" src="${image}" alt="Diary Image" />
-                    <figcaption>
-                      <p>${preview}</p>
-                      <p>${displayDate}</p>
-                    </figcaption>
-                  </figure>
-                </li>
-              `;
+      diary.images.forEach((image, index) => {
+        console.log(`Creating gallery item ${itemCount + 1} for ${dateKey}, image ${index + 1}`);
+        
+        const listItem = document.createElement('li');
+        listItem.className = 'gallery-item';
+        listItem.onclick = () => openDiaryModal(dateKey);
+        
+        listItem.innerHTML = `
+          <figure>
+            <img class="gallery-img" src="${image}" alt="Diary Image" />
+            <figcaption>
+              <p>${preview}</p>
+              <p>${displayDate}</p>
+            </figcaption>
+          </figure>
+        `;
+        
+        galleryContainer.appendChild(listItem);
+        itemCount++;
       });
     }
   });
 
-  galleryContainer.innerHTML = html;
+  console.log(`Created ${itemCount} gallery items`);
+  console.log("Gallery container final HTML length:", galleryContainer.innerHTML.length);
+  
   updateGallerySearch();
 };
+
 
 //갤러리 검색 기능 업데이트
 const updateGallerySearch = () => {
