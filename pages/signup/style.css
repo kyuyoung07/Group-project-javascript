@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Sweet';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+.pageWrapper {
+    padding: 20px;
+}
+.container.formField {
+  font-family: 'Sweet';  
+  height: 800px; 
+  width: 600px;
+  background-color: #f9e7d9;
+}
+.errorMessage-id,
+.errorMessage-pw,
+.errorMessage-re,
+.errorMessage-email,
+.errorMessage-tel,
+.errorMessage-gender,
+.errorMessage-check {
+  min-height: 20px; /* 에러 메시지 높이 고정 */
+  color: red;
+  font-size: 0.9rem;
+}
+
+.formTitle {
+    color: #7a4e2d;
+    text-align: center;
+    font-weight: 900;
+}
+.form-control:focus {
+  border-color: #ffb385; 
+  box-shadow: 0 0 0 .25rem  rgba(255, 179, 133, 0.5);
+}
+.formButton {
+    margin-top: 20px;
+}
+.formButton .btn {
+    background-color: #ffb385;
+    border: none;
+}
+.formButton .btn:hover {
+    background-color: #b7d2cc;
+}
