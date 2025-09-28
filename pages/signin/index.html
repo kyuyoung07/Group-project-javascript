@@ -1,17 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    
-    <!--공통JS-------------------->
-    <script src="main.js"></script>
-    <!--페이지 전용 JS--------------->
-    <script src="script.js"></script>
-</body>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/images/logo.png">
+   <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no;" /> 
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+ <link rel="stylesheet" href="style.css" />
+    <title>소소 다이어리</title>
+   
+  </head>
+  <body>
+    <div class="container">
+      <div class="signin">
+        <div class="signin-photo"></div>
+        <div class="signin-content">
+          <div class="logo">
+           <img src="/images/logo.png" alt="">
+            <p>로그인 후 이용해주세요</p>
+          </div>
+          <div class="signin-field">
+            <input type="text" placeholder="아이디" />
+            <input type="password" placeholder="비밀번호" />
+          </div>
+          <div class="status custom-chk">
+            <label> <input type="checkbox" /><em></em>자동 로그인 </label>
+            <a href="#none">아이디/비밀번호 찾기</a>
+          </div>
+          <button class="btn-signin">로그인</button>
+          <div class="join-member">
+            아직 회원이 아니신가요? <a href="sighup/index.html">회원가입</a>
+          </div>
+          <div class="easy-signin">
+            <span>SNS 계정으로 간편 로그인</span>
+            <div class="social-btn">
+              <a href="index.html"><img src="images/sns-icon-01.svg" /></a>
+              <a href="index.html"><img src="images/sns-icon-02.svg" /></a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </body>
 </html>
