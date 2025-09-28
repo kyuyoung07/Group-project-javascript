@@ -8,6 +8,7 @@ const detailList = document.querySelector('#detail');
 const AskModalBtn = document.querySelector('.listTitle');
 const detailBtn = document.querySelector('.detailModal');
 const modalBody = document.querySelector('.detailBody');
+const searchInput =document.getElementById('searchInput')
 
 //로컬스토리지 겟 아이템은 항상 문자열을 반환하기에 우리가 쓸 수 있는 값으로 반환 parse를 사용
 const userAskList = JSON.parse(localStorage.getItem('userAskList')) || [];
@@ -61,6 +62,89 @@ if (userAskList.length > 0) {
 } else {
   detailList.innerHTML = '<p>작성된 글이 없습니다</p>';
 }
+searchInput.addEventListener('input', () => {
+  //키워드라는 변수는 input값에 작성한걸 넣는건데 
+  const keyword = searchInput.value.trim().toLowerCase();
+  
+  if (keyword === '') {
+    // 검색어가 없으면 전체 목록 표시
+    displayAllPosts();
+  } else {
+    // 검색어가 있으면 필터링된 결과 표시
+    searchAndDisplayPosts(keyword);
+  }
+});
+
+function searchAndDisplayPosts(keyword) {
+  const userAskList = JSON.parse(localStorage.getItem('userAskList')) || [];
+  
+  // 제목 또는 내용에서 키워드 검색
+  const filteredPosts = userAskList.filter(post => 
+    post.title.toLowerCase().includes(keyword) ||
+    post.detail.toLowerCase().includes(keyword)
+  );
+  
+  displayPosts(filteredPosts, keyword);
+}
+//검색어를 일단 빈값으로 만들어서 따로 넘길 필요가없음
+function displayPosts(posts, keyword = '') {
+  //최종적으로 보여줄 HTMl문자열을 저장 빈문자열로 만든 이유는 나중에 +=로 추가할 예정
+  let htmlContent = '';
+  
+  //표시할 글이 하나도 없으면
+  if (posts.length === 0) {
+    //일단 검색어가 있는지 확인
+    htmlContent = keyword ? 
+      //있으면 검색결과가 없다.
+      `<p>"${keyword}" 검색 결과가 없습니다.</p>` : 
+      //아예 내용자체가 없으면 글이 없다.
+      '<p>작성된 글이 없습니다</p>';
+    //만약에 글이 있으면
+  } else {
+    //돌면서 하이라이트 mark를 적용할건데
+    posts.forEach((post) => {
+      //있으면 그 검색어에 하이라이트 적용
+      const highlightedTitle = keyword ? 
+        //없으면 원래 제목 그대로 사용(내용과 겹치는 부분이 있을 수 있기 때문에)
+        highlightKeyword(post.title, keyword) : post.title;
+        
+      //여기서 생성되는 HTML를 보여줄것 까봤더니 어 있네? 하면 그게 보여지는것
+      htmlContent += `<div class="datail-List">
+        <div class="listTitle detailModal" data-bs-toggle="modal"
+          data-bs-target="#detailModal" onclick="showPostDetail(${post.id})">
+          ${highlightedTitle}
+        </div>
+        <div class="list-RightBox">
+          <div class="listAuthor">누군가</div>
+          <div class="listTime">${getCalculateTime(post.date)}</div>
+        </div>
+      </div>`;
+    });
+  }
+  //그렇게 추가가 된걸 디테일리스트에 추가
+  detailList.innerHTML = htmlContent;
+}
+
+function displayAllPosts() {
+  //가장 기본이 됨 일단 로컬스토리지에서 데이터를 가져와서
+  const userAskList = JSON.parse(localStorage.getItem('userAskList')) || [];
+  //보여줄 곳에 집어넣음(함수 리펙토링 한다고 생각하면 됨.)재사용성이 많은 코드이기에
+  displayPosts(userAskList);
+}
+
+// 검색어 하이라이트 함수
+function highlightKeyword(text, keyword) {
+  //정규식 객체를 만들어서 그 안에 사용자가 입력한 값을 집어넣고
+  //텍스트 전체(g)에서 대소문자 구분(i)없이 찾기
+  const regex = new RegExp(`(${keyword})`, 'gi');
+  //찾게 되면 HTML의 하이라이트 태그인 mark를 집어넣을건데 상단 정규식 
+  //Keyword에 들어가있는 내용($1)을 찾겠다.
+  return text.replace(regex, '<mark>$1</mark>');
+  
+}
+
+
+
 
 function showPostDetail(postId) {
   //로컬스토리지로 인해서 객체를 문자열로 반환해서 사용하는데
